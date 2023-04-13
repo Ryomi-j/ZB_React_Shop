@@ -14,11 +14,11 @@ const Footer = () => {
 		<FooterContainer>
 			<Link to={"https://zero-base.co.kr/"}>제로베이스</Link>
 			<CardList>
-				
-					{cards.map((Card, key) => (
-						<li><Card key={key} /></li>
-					))}
-				
+				{cards.map((Card, key) => (
+					<li>
+						<Card key={key} />
+					</li>
+				))}
 			</CardList>
 		</FooterContainer>
 	);
@@ -32,7 +32,6 @@ const FooterContainer = styled.footer`
 const CardList = styled.ul`
 	display: flex;
 	gap: 10px;
-`
-
+`;
 
 export default Footer;
