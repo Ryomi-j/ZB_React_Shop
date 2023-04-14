@@ -15,7 +15,7 @@ const Footer = () => {
 	let cards = [Visa, Master, Amax, Paypal, Diners, Discover];
 	return (
 		<FooterContainer>
-			<Link to="https://zero-base.co.kr/">제로베이스</Link>
+			<Link to="https://zero-base.co.kr/"  target="_blank">제로베이스</Link>
 			<CardList>
 				{cards.map((Card) => (
 					<li key={shortid.generate()}>
@@ -24,13 +24,13 @@ const Footer = () => {
 				))}
 			</CardList>
 			<SNSContainer>
-				<Link to="https://www.facebook.com/0base">
+				<Link to="https://www.facebook.com/0base" target="_blank">
 					<RiFacebookFill />
 				</Link>
-				<Link to="https://www.instagram.com/zerobase.official/">
+				<Link to="https://www.instagram.com/zerobase.official/" target="_blank">
 					<FiInstagram />
 				</Link>
-				<Link to="https://github.com/Ryomi-j/ZB_React_Shop">
+				<Link to="https://github.com/Ryomi-j/ZB_React_Shop" target="_blank">
 					<AiFillGithub />
 				</Link>
 			</SNSContainer>
