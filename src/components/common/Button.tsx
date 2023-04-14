@@ -4,7 +4,7 @@ import { ButtonIcon } from "./ButtonIcon";
 import { IconType } from "react-icons";
 
 interface ButtonType {
-	linkPage: string;
+	linkPage?: string;
 	content?: string;
 	icon?: IconType;
 	isDarkMode?: boolean;
@@ -15,20 +15,19 @@ const ButtonItem = ({ linkPage, content, icon, isDarkMode }: ButtonType) => {
 		<Button type="button">
 			{content}
 			{icon && <ButtonIcon iconName={icon} />}
-			<Link to={linkPage}></Link>
+			{linkPage && <Link to={linkPage}></Link>}
 		</Button>
 	);
 };
 
 const Button = styled.button`
-    font-size: 1.1rem;
+	font-size: 1.1rem;
 
 	& > svg {
 		padding: 0;
 		display: block;
-		width: 2rem;
-		height: 2rem;
-		color: white;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 `;
 
