@@ -34,19 +34,34 @@ const Main = () => {
 		<Wrapper>
 			<MainCarousel images={carouselImgs} />
 			<CategoryWrapper>
+				<Category>패션</Category>
 				<ProductFrame category="clothing" numberOfItems={4} />
+				<Category>액세서리</Category>
+				<ProductFrame category="jewelery" numberOfItems={4} />
+				<Category>디지털</Category>
+				<ProductFrame category="electronics" numberOfItems={4} />
 			</CategoryWrapper>
 		</Wrapper>
 	);
 };
 
 const Wrapper = styled.main`
+	position: relative;
+	top: 4rem;
 	width: 100%;
-    position: relative;
-    top: 4rem;
-    height: 170rem;
+	height: 170rem;
 `;
 
-const CategoryWrapper = styled.section``;
+const CategoryWrapper = styled.section`
+	margin: 5.5rem 6rem;
+`;
+
+const Category = styled.h2`
+	margin-bottom: 2rem;
+	font-size: 2.2rem;
+	font-weight: bold;
+	color: #1f2937;
+	text-align: center;
+`;
 
 export default Main;
