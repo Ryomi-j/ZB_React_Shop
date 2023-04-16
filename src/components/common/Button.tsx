@@ -24,6 +24,7 @@ const Button = styled.button`
 	font-size: 1.1rem;
 	display: flex;
 	align-items: center;
+	padding: 0.5rem 0.7rem;
 
 	& > svg {
 		padding: 0;

@@ -47,7 +47,6 @@ const Main = () => {
 
 const Wrapper = styled.main`
 	position: relative;
-	top: 4rem;
 	width: 100%;
 	height: 170rem;
 `;

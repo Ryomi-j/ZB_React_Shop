@@ -34,6 +34,7 @@ const ProductFrame = (props: ProductFrameProps) => {
 
 const Container = styled.div`
 	display: flex;
+	justify-content: center;
 	gap: 1.5rem;
 	margin-bottom: 4rem;
 `;
@@ -73,7 +74,6 @@ const ProductDetail = styled.div`
 	border-bottom-right-radius: 16px;
 	text-align: left;
 	line-height: 1.2rem;
-
 
 	& :first-of-type {
 		margin-bottom: 1.5rem;

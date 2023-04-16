@@ -43,8 +43,8 @@ const MainCarousel = ({ images }: MainCarouselProps) => {
 
 const Wrapper = styled.section`
 	position: relative;
-	top: 0;
-	height: 29.2rem;
+	top: 3rem;
+	height: 30rem;
 	overflow: hidden;
 `;
 
@@ -57,7 +57,7 @@ const StyledCarousel = styled(Carousel)`
 
 const Caption = styled.h2`
 	position: relative;
-	top: 8.5rem;
+	top: 9.2rem;
 	left: 6rem;
 	color: white;
 	font-weight: bold;
@@ -69,7 +69,7 @@ const Caption = styled.h2`
 const Detail = styled.p`
 	position: relative;
 	text-align: left;
-	top: 9.3rem;
+	top: 10rem;
 	left: 6rem;
 	color: white;
 	z-index: 2;
@@ -78,7 +78,7 @@ const Detail = styled.p`
 const ButtonWrapper = styled.div`
 	position: relative;
 	text-align: left;
-	top: 10.8rem;
+	top: 11.5rem;
 	left: 6rem;
 	color: white;
 	z-index: 2;
@@ -99,7 +99,7 @@ const ButtonWrapper = styled.div`
 const Img = styled.img`
 	object-fit: cover;
 	position: relative;
-	top: -12.5rem;
+	top: -12rem;
 `;
 
 export default MainCarousel;

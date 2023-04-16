@@ -7,59 +7,89 @@ import { Link } from "react-router-dom";
 const Header = () => {
 	const headerButtons = ["패션", "액세서리", "디지털"];
 	return (
-		<Container>
-			<LeftContainer>
+		<ContainerWrapper>
+			<Container>
 				<Title>
 					<Link to="/">React Shop</Link>
 				</Title>
-				{headerButtons.map((el) => {
-					return <ButtonItem key={el} linkPage="/" content={el} />;
-				})}
-			</LeftContainer>
-			<RightContainer>
-				<ButtonItem linkPage="/" icon={RiSunLine} isDarkMode />
-				<SearchBar placeholder="검색" />
-				<ButtonItem linkPage="/" icon={MdOutlineShoppingBag} />
-			</RightContainer>
-		</Container>
+				<Category>
+					{headerButtons.map((el) => {
+						return <ButtonItem key={el} linkPage="/" content={el} />;
+					})}
+				</Category>
+				<Buttons>
+					<ButtonItem linkPage="/" icon={RiSunLine} isDarkMode />
+					<SearchBar placeholder="검색" />
+					<ButtonItem linkPage="/" icon={MdOutlineShoppingBag} />
+				</Buttons>
+			</Container>
+		</ContainerWrapper>
 	);
 };
 
-const Container = styled.div`
+const ContainerWrapper = styled.header`
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 	position: fixed;
-	margin: 0 auto;
-	padding: 0.5rem 2rem;
+	z-index: 999;
 	width: 100%;
 	height: 3rem;
 	min-height: 3rem;
-	// z-index: 999;
-	background-color: #ffffff
+	margin: auto;
+	padding: 0.5rem;
+	background: #ffffff;
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	color: #374151;
 `;
 
-const LeftContainer = styled.div`
+const Container = styled.div`
+	width: 58rem;
 	display: flex;
+	justify-content: space-around;
 	align-items: center;
-	gap: 1rem;
 `;
 
 const Title = styled.h1`
+	width: 7rem;
 	font-weight: bold;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	cursor: pointer;
+	text-align: center;
 
 	a:hover {
 		text-decoration: none;
 	}
 `;
 
-const RightContainer = styled.div`
+const Category = styled.nav`
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	width: 30rem;
+
+	& > button {
+		font-size: 0.9rem;
+		color: #374151;
+
+		&:hover {
+			background: #1f293733;
+		}
+	}
+`;
+
+const Buttons = styled.div`
 	display: flex;
 	justify-content: space-around;
 	width: 20rem;
 	height: 3rem;
+	background-color: red
+
+	&:last-child {		
+		&:hover {
+			background: #1f293733;
+		}
+	}
 `;
 
 const SearchBar = styled.input`
@@ -67,10 +97,10 @@ const SearchBar = styled.input`
 	width: 10rem;
 	hegith: 2rem;
 	padding: 0 1.5rem;
-	border-radius: 0.5rem;
 	outline: none;
 	opacity: 0.5;
 	border: none;
+	border-radius: 0.5rem;
 	background-color: rgba(31, 41, 55, 0.3);
 `;
 
