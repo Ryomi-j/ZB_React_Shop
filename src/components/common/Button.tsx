@@ -23,6 +23,7 @@ const ButtonItem = ({ linkPage, content, icon, isDarkMode }: ButtonType) => {
 const Button = styled.button`
 	font-size: 1.1rem;
 	display: flex;
+	align-items: center;
 
 	& > svg {
 		padding: 0;
