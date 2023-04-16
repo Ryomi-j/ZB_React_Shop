@@ -39,10 +39,9 @@ const Main = () => {
 
 const Wrapper = styled.main`
 	width: 100%;
-	height: 43rem;
-	& > div {
-		height: 40rem;
-	}
+    position: relative;
+    top: 4rem;
+    height: 170rem;
 `;
 
 const CategoryWrapper = styled.section``;

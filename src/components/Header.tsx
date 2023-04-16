@@ -27,13 +27,16 @@ const Header = () => {
 
 const Container = styled.div`
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
+	position: fixed;
 	margin: 0 auto;
-	padding: 0.5rem 1rem;
-	width: 1280px;
+	padding: 0.5rem 2rem;
+	width: 100%;
 	height: 3rem;
 	min-height: 3rem;
+	// z-index: 999;
+	background-color: #ffffff
 `;
 
 const LeftContainer = styled.div`

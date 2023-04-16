@@ -20,7 +20,12 @@ interface MainCarouselProps {
 const MainCarousel = ({ images }: MainCarouselProps) => {
 	return (
 		<Wrapper>
-			<StyledCarousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
+			<StyledCarousel
+				autoPlay={true}
+				showThumbs={false}
+				showStatus={false}
+				infiniteLoop={true}
+			>
 				{images.map((image) => (
 					<div key={image.title}>
 						<Caption>{image.caption}</Caption>
@@ -28,7 +33,7 @@ const MainCarousel = ({ images }: MainCarouselProps) => {
 						<ButtonWrapper>
 							<ButtonItem content="바로가기 " linkPage={image.linkPage} icon={BsArrowRightShort} />
 						</ButtonWrapper>
-						<img src={image.src} alt={image.alt} />
+						<Img src={image.src} alt={image.alt} />
 					</div>
 				))}
 			</StyledCarousel>
@@ -37,55 +42,64 @@ const MainCarousel = ({ images }: MainCarouselProps) => {
 };
 
 const Wrapper = styled.section`
-	position: absolute;
-    top: -2rem;
-	width: 100%;
-	height: 35rem;
+	position: relative;
+	top: 0;
+	height: 29.2rem;
 	overflow: hidden;
 `;
 
 const StyledCarousel = styled(Carousel)`
+	height: 100%;
 	& > div {
-		height: 35rem;
+		height: 100%;
 	}
 `;
 
 const Caption = styled.h2`
 	position: relative;
-	top: 15rem;
+	top: 8.5rem;
 	left: 6rem;
 	color: white;
 	font-weight: bold;
 	font-size: 2.2rem;
 	text-align: left;
+	z-index: 2;
 `;
 
 const Detail = styled.p`
 	position: relative;
 	text-align: left;
-	top: 16rem;
+	top: 9.3rem;
 	left: 6rem;
 	color: white;
+	z-index: 2;
 `;
 
 const ButtonWrapper = styled.div`
 	position: relative;
 	text-align: left;
-	top: 18rem;
+	top: 10.8rem;
 	left: 6rem;
 	color: white;
+	z-index: 2;
 
-    & > button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #3d4451;
-        color: #ffffff;
-        padding: 0 .7rem;
-        height: 3rem;
-        font-size: 1.2rem;
-        opacity: 1
-    }
+	& > button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #3d4451;
+		color: #ffffff;
+		padding: 0 0.7rem;
+		height: 3rem;
+		font-size: 1rem;
+		opacity: 1;
+	}
+`;
+
+const Img = styled.img`
+	object-fit: cover;
+	position: relative;
+	top: -12.5rem;
 `;
 
 export default MainCarousel;
