@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import MainCarousel from "./Carousel";
+import ProductFrame from "./common/ProductFrame";
 
 const Main = () => {
 	const carouselImgs = [
@@ -32,7 +33,9 @@ const Main = () => {
 	return (
 		<Wrapper>
 			<MainCarousel images={carouselImgs} />
-			<CategoryWrapper></CategoryWrapper>
+			<CategoryWrapper>
+				<ProductFrame category="clothing" numberOfItems={4} />
+			</CategoryWrapper>
 		</Wrapper>
 	);
 };
