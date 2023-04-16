@@ -47,6 +47,25 @@ const ProductContainer = styled.div`
 	border-radius: 16px;
 	background-color: #f3f4f6;
 	color: #1f2937;
+	cursor: pointer;
+	transition: transform .3s ease-in-out;
+
+	&:hover {
+		& > figure img {
+			transform: scale(1.2);
+			transition-timing-function: cubic-bezier(.4,0,.2,1);
+			transition-duration: .3s;
+		}
+	}
+	
+	&:not(:hover) {
+		& > figure img {
+			transform: scale(1);
+			transition-timing-function: ease-out;
+			transition-duration: .3s;
+		}
+	}
+	
 `;
 
 const ProductImgContainer = styled.figure`
