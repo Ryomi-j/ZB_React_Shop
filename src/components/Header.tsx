@@ -4,17 +4,36 @@ import { RiSunLine } from "react-icons/ri";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Header = () => {
-	const headerButtons = ["패션", "액세서리", "디지털"];
+interface HeaderProps {
+	setCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Header = ({setCategory}: HeaderProps) => {
+	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
+	const categories = ["fashion", "jewelery", "electronics"];
+
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		const target = event.target as HTMLButtonElement;
+
+		if (target.tagName === "BUTTON" || target.tagName === "A") {
+			const text = target.innerText;
+			const selectedCategory = categories[headerCategoryButtons.findIndex((category) => category === text)];
+
+			if (selectedCategory !== undefined) {
+				setCategory(selectedCategory);
+			}
+		}
+	};
+
 	return (
 		<ContainerWrapper>
 			<Container>
 				<Title>
 					<Link to="/">React Shop</Link>
 				</Title>
-				<Category>
-					{headerButtons.map((el) => {
-						return <ButtonItem key={el} linkPage="/" content={el} />;
+				<Category onClick={handleClick}>
+					{headerCategoryButtons.map((el, idx) => {
+						return <ButtonItem key={el} linkPage={`/${categories[idx]}`} content={el} />;
 					})}
 				</Category>
 				<Buttons>

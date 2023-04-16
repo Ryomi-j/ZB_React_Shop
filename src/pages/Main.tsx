@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import MainCarousel from "./Carousel";
-import ProductFrame from "./common/ProductFrame";
+import MainCarousel from "../components/Carousel";
+import ProductFrame from "../components/common/ProductFrame";
 
 const Main = () => {
-	const carouselImgs = [
+	const carouselItems = [
 		{
 			title: "fashion",
 			src: "/carousel_imgs/fashion.jpeg",
@@ -32,7 +32,7 @@ const Main = () => {
 
 	return (
 		<Wrapper>
-			<MainCarousel images={carouselImgs} />
+			<MainCarousel images={carouselItems} />
 			<CategoryWrapper>
 				<Category>패션</Category>
 				<ProductFrame category="clothing" numberOfItems={4} />

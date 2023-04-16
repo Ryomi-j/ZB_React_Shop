@@ -8,14 +8,18 @@ interface ButtonType {
 	content?: string;
 	icon?: IconType;
 	isDarkMode?: boolean;
+	handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const ButtonItem = ({ linkPage, content, icon, isDarkMode }: ButtonType) => {
+const ButtonItem = ({ linkPage, content, icon, isDarkMode, handleClick }: ButtonType) => {
 	return (
-		<Button type="button">
-			{content}
-			{icon && <ButtonIcon iconName={icon} />}
-			{linkPage && <Link to={linkPage}></Link>}
+		<Button type="button" onClick={handleClick}>
+			{linkPage && content && <Link to={linkPage}>{content}</Link>}
+			{linkPage && icon && (
+				<Link to={linkPage}>
+					<ButtonIcon iconName={icon} />
+				</Link>
+			)}
 		</Button>
 	);
 };
@@ -26,11 +30,15 @@ const Button = styled.button`
 	align-items: center;
 	padding: 0.5rem 0.7rem;
 
-	& > svg {
-		padding: 0;
-		display: block;
-		width: 1.5rem;
-		height: 1.5rem;
+	& > a {
+		text-decoration: none;
+
+		& > svg {
+			padding: 0;
+			display: block;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
 	}
 `;
 

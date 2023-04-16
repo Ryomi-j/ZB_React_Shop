@@ -3,13 +3,13 @@ import GetData from "../api";
 
 interface ProductFrameProps {
 	category: string;
-	numberOfItems: number;
+	numberOfItems?: number;
 }
 
 const ProductFrame = (props: ProductFrameProps) => {
 	const data = GetData("https://fakestoreapi.com/products");
-	let categoryItems = data.filter((el) => el.category.includes(props.category)).slice(0, props.numberOfItems);
-	console.log(categoryItems);
+	let categoryItems = data.filter((el) => el.category.includes(props.category));
+	categoryItems = props.numberOfItems ? categoryItems.slice(0, props.numberOfItems) : categoryItems;
 
 	return (
 		<Container>
@@ -42,30 +42,29 @@ const Container = styled.div`
 const ProductContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 18rem;
+	width: 13rem;
 	border: 1px solid rgb(229 231 235);
 	border-radius: 16px;
 	background-color: #f3f4f6;
 	color: #1f2937;
 	cursor: pointer;
-	transition: transform .3s ease-in-out;
+	transition: transform 0.3s ease-in-out;
 
 	&:hover {
 		& > figure img {
 			transform: scale(1.2);
-			transition-timing-function: cubic-bezier(.4,0,.2,1);
-			transition-duration: .3s;
+			transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			transition-duration: 0.3s;
 		}
 	}
-	
+
 	&:not(:hover) {
 		& > figure img {
 			transform: scale(1);
 			transition-timing-function: ease-out;
-			transition-duration: .3s;
+			transition-duration: 0.3s;
 		}
 	}
-	
 `;
 
 const ProductImgContainer = styled.figure`
@@ -92,7 +91,7 @@ const ProductDetail = styled.div`
 	border-bottom-left-radius: 16px;
 	border-bottom-right-radius: 16px;
 	text-align: left;
-	line-height: 1.2rem;
+	line-height: 1.4rem;
 
 	& :first-of-type {
 		margin-bottom: 1.5rem;
