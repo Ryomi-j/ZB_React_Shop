@@ -4,6 +4,7 @@ import ProductFrame from "../components/common/ProductFrame";
 
 interface MainProps {
 	setCategory: React.Dispatch<React.SetStateAction<string>>;
+	setItem: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Main = (props: MainProps) => {
@@ -39,11 +40,11 @@ const Main = (props: MainProps) => {
 			<MainCarousel images={carouselItems} setCategory={props.setCategory} />
 			<CategoryWrapper>
 				<Category>패션</Category>
-				<ProductFrame category="clothing" numberOfItems={4} />
+				<ProductFrame category="clothing" numberOfItems={4} setItem={props.setItem}/>
 				<Category>액세서리</Category>
-				<ProductFrame category="jewelery" numberOfItems={4} />
+				<ProductFrame category="jewelery" numberOfItems={4} setItem={props.setItem}/>
 				<Category>디지털</Category>
-				<ProductFrame category="electronics" numberOfItems={4} />
+				<ProductFrame category="electronics" numberOfItems={4} setItem={props.setItem}/>
 			</CategoryWrapper>
 		</Wrapper>
 	);

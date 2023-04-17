@@ -3,6 +3,7 @@ import ProductFrame from "../components/common/ProductFrame";
 
 interface CategoryPageProps {
 	category: string;
+	setItem: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CategoryPage = (props: CategoryPageProps) => {
@@ -21,7 +22,7 @@ const CategoryPage = (props: CategoryPageProps) => {
 				</BreadCrumble>
 				<Category>{categoryTitle[categoryIdx]}</Category>
 				<ProductWrapper>
-					<ProductFrame category={categories[categoryIdx]} />
+					<ProductFrame category={categories[categoryIdx]} setItem={props.setItem} />
 				</ProductWrapper>
 			</Container>
 		</ContainerWrapper>
@@ -55,7 +56,7 @@ const BreadCrumble = styled.div`
 
 	& p {
 		line-height: 1.25rem;
-        padding-top: .5rem;
+		padding-top: 0.5rem;
 
 		&::after {
 			content: "";

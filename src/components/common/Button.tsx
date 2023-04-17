@@ -41,6 +41,11 @@ const ButtonItem = ({ linkPage, content, icon, isDarkMode, handleClick }: Button
 					<ButtonIcon iconName={icon} />
 				</Button>
 			)}
+			{!linkPage && !icon && content && (
+				<Button type="button" onClick={handleClick}>
+					{content}
+				</Button>
+			)}
 		</>
 	);
 };

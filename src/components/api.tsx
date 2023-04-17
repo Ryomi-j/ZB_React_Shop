@@ -14,7 +14,7 @@ interface DataProps {
 	category: string;
 	description: string;
 	image: string;
-	reating: RatingProps;
+	rating: RatingProps;
 }
 
 const GetData = (url: string) => {

@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import GetData from "../api";
+import { useNavigate } from "react-router-dom";
 
 interface ProductFrameProps {
 	category: string;
 	numberOfItems?: number;
+	setItem: React.Dispatch<React.SetStateAction<number>>
 }
 
 const ProductFrame = (props: ProductFrameProps) => {
@@ -11,11 +13,18 @@ const ProductFrame = (props: ProductFrameProps) => {
 	let categoryItems = data.filter((el) => el.category.includes(props.category));
 	categoryItems = props.numberOfItems ? categoryItems.slice(0, props.numberOfItems) : categoryItems;
 
+	const navigate = useNavigate();
+
+	const handleClick = (id: number) => {
+		props.setItem(id)
+		navigate(`/product/${id}`);
+	};
+
 	return (
 		<Container>
 			{categoryItems.length > 0 ? (
 				categoryItems.map((el) => (
-					<ProductContainer key={el.id}>
+					<ProductContainer key={el.id} onClick={() => handleClick(el.id)}>
 						<ProductImgContainer>
 							<img src={el.image} alt={`${el.category} image`} />
 						</ProductImgContainer>
