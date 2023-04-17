@@ -26,8 +26,6 @@ const ProductDetailPage = (props: ProductDetailPageProps) => {
 
 	const categoryIdx = categories.findIndex((el) => item?.category.includes(el));
 
-	console.log(props.selectedItem);
-
 	return (
 		<ContainerWrapper>
 			<Container>
