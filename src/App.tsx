@@ -42,6 +42,7 @@ function App() {
 					path={`/product/${selectedItem}`}
 					element={<Navigate replace to={`/product/${selectedItem}`}></Navigate>}
 				></Route>
+				<Route path='*' element={<NotFound />}></Route>
 			</Routes>
 			<Footer />
 		</>
