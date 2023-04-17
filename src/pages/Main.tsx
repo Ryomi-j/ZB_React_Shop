@@ -2,7 +2,11 @@ import styled from "@emotion/styled";
 import MainCarousel from "../components/Carousel";
 import ProductFrame from "../components/common/ProductFrame";
 
-const Main = () => {
+interface MainProps {
+	setCategory: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Main = (props: MainProps) => {
 	const carouselItems = [
 		{
 			title: "fashion",
@@ -10,15 +14,15 @@ const Main = () => {
 			alt: "fashion",
 			caption: "물빠진 청바지!",
 			detail: "이제 막 도착한 패션 청바지를 구경해 보세요.",
-			linkPage: "/",
+			linkPage: "/fashion",
 		},
 		{
-			title: "digital",
+			title: "electronics",
 			src: "/carousel_imgs/digital.jpeg",
 			alt: "digital",
 			caption: "신속한 업무처리!",
 			detail: "다양한 디지털 상품을 둘러보세요.",
-			linkPage: "/",
+			linkPage: "/electronics",
 		},
 		{
 			title: "grocery",
@@ -26,13 +30,13 @@ const Main = () => {
 			alt: "grocery",
 			caption: "신선한 식품!",
 			detail: "농장 직배송으로 더욱 신선한 식료품을 만나보세요.",
-			linkPage: "/",
+			linkPage: "/grocery",
 		},
 	];
 
 	return (
 		<Wrapper>
-			<MainCarousel images={carouselItems} />
+			<MainCarousel images={carouselItems} setCategory={props.setCategory} />
 			<CategoryWrapper>
 				<Category>패션</Category>
 				<ProductFrame category="clothing" numberOfItems={4} />

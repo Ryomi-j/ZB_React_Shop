@@ -13,10 +13,9 @@ function App() {
 		<>
 			<Header setCategory={setSelectedCategory} />
 			<Routes>
-				<Route path="/" element={<Main />} />
+				<Route path="/" element={<Main setCategory={setSelectedCategory} />} />
 				<Route path={`/${selectedCategory}`} element={<CategoryPage category={selectedCategory} />} />
 			</Routes>
-			
 			<Footer />
 		</>
 	);

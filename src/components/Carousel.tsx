@@ -15,9 +15,14 @@ interface Image {
 
 interface MainCarouselProps {
 	images: Image[];
+	setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const MainCarousel = ({ images }: MainCarouselProps) => {
+const MainCarousel = ({ images, setCategory }: MainCarouselProps) => {
+	const handleClick = (image:Image) => {
+		setCategory(image.title)
+	}
+
 	return (
 		<Wrapper>
 			<StyledCarousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
@@ -25,8 +30,8 @@ const MainCarousel = ({ images }: MainCarouselProps) => {
 					<div key={image.title}>
 						<Caption>{image.caption}</Caption>
 						<Detail>{image.detail}</Detail>
-						<ButtonWrapper>
-							<ButtonItem content="바로가기 " linkPage={image.linkPage} icon={BsArrowRightShort} />
+						<ButtonWrapper onClick={() => handleClick(image)}>
+							<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
 						</ButtonWrapper>
 						<Img src={image.src} alt={image.alt} />
 					</div>
