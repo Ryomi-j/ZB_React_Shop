@@ -20,12 +20,7 @@ interface MainCarouselProps {
 const MainCarousel = ({ images }: MainCarouselProps) => {
 	return (
 		<Wrapper>
-			<StyledCarousel
-				autoPlay={true}
-				showThumbs={false}
-				showStatus={false}
-				infiniteLoop={true}
-			>
+			<StyledCarousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
 				{images.map((image) => (
 					<div key={image.title}>
 						<Caption>{image.caption}</Caption>
@@ -52,6 +47,10 @@ const StyledCarousel = styled(Carousel)`
 	height: 100%;
 	& > div {
 		height: 100%;
+
+		& .control-arrow {
+			border-radius: 0rem;
+		}
 	}
 `;
 
