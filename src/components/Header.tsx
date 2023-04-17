@@ -8,7 +8,7 @@ interface HeaderProps {
 	setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Header = ({setCategory}: HeaderProps) => {
+const Header = ({ setCategory }: HeaderProps) => {
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
 
@@ -87,12 +87,16 @@ const Category = styled.nav`
 	justify-content: left;
 	width: 30rem;
 
-	& > button {
-		font-size: 0.9rem;
-		color: #374151;
+	& > a {
+		text-decoration: none;
 
-		&:hover {
-			background: #1f293733;
+		& > button {
+			font-size: 0.9rem;
+			color: #374151;
+
+			&:hover {
+				background: #1f293733;
+			}
 		}
 	}
 `;

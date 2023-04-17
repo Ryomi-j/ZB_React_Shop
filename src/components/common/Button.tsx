@@ -13,32 +13,44 @@ interface ButtonType {
 
 const ButtonItem = ({ linkPage, content, icon, isDarkMode, handleClick }: ButtonType) => {
 	return (
-		<Button type="button" onClick={handleClick}>
-			{linkPage && content && <Link to={linkPage}>{content}</Link>}
-			{linkPage && icon && (
+		<>
+			{linkPage && icon && content && (
 				<Link to={linkPage}>
-					<ButtonIcon iconName={icon} />
+					<Button type="button" onClick={handleClick}>
+						{content}
+						<ButtonIcon iconName={icon} />
+					</Button>
 				</Link>
 			)}
-		</Button>
+			{linkPage && content && !icon &&(
+				<Link to={linkPage}>
+					<Button type="button" onClick={handleClick}>
+						{content}
+					</Button>
+				</Link>
+			)}
+			{linkPage && icon && !content &&(
+				<Link to={linkPage}>
+					<Button type="button" onClick={handleClick}>
+						<ButtonIcon iconName={icon} />
+					</Button>
+				</Link>
+			)}
+		</>
 	);
 };
 
 const Button = styled.button`
-	font-size: 1.1rem;
 	display: flex;
 	align-items: center;
 	padding: 0.5rem 0.7rem;
+	font-size: 1.1rem;
 
-	& > a {
-		text-decoration: none;
-
-		& > svg {
-			padding: 0;
-			display: block;
-			width: 1.5rem;
-			height: 1.5rem;
-		}
+	& > svg {
+		padding: 0;
+		display: block;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 `;
 

@@ -82,16 +82,24 @@ const ButtonWrapper = styled.div`
 	color: white;
 	z-index: 2;
 
-	& > button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: #3d4451;
-		color: #ffffff;
-		padding: 0 0.7rem;
-		height: 3rem;
-		font-size: 1rem;
-		opacity: 1;
+	& > a {
+		text-decoration: none;
+		
+		& button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #3d4451;
+			color: #ffffff;
+			padding: 0 0.7rem;
+			height: 3rem;
+			font-size: 1rem;
+			opacity: 1;
+	
+			&:hover {
+				background:  #303640;
+			}
+		}
 	}
 `;
 
