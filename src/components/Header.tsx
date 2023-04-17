@@ -37,7 +37,7 @@ const Header = ({ setCategory }: HeaderProps) => {
 					})}
 				</Category>
 				<Buttons>
-					<ButtonItem linkPage="/" icon={RiSunLine} isDarkMode />
+					<ButtonItem icon={RiSunLine} isDarkMode />
 					<SearchBar placeholder="검색" />
 					<ButtonItem linkPage="/" icon={MdOutlineShoppingBag} />
 				</Buttons>
@@ -104,6 +104,7 @@ const Category = styled.nav`
 const Buttons = styled.div`
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 	width: 20rem;
 	height: 3rem;
 	background-color: red
@@ -118,7 +119,7 @@ const Buttons = styled.div`
 const SearchBar = styled.input`
 	display: block;
 	width: 10rem;
-	hegith: 2rem;
+	height: 3rem;
 	padding: 0 1.5rem;
 	outline: none;
 	opacity: 0.5;

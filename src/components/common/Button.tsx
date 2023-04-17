@@ -22,19 +22,24 @@ const ButtonItem = ({ linkPage, content, icon, isDarkMode, handleClick }: Button
 					</Button>
 				</Link>
 			)}
-			{linkPage && content && !icon &&(
+			{linkPage && content && !icon && (
 				<Link to={linkPage}>
 					<Button type="button" onClick={handleClick}>
 						{content}
 					</Button>
 				</Link>
 			)}
-			{linkPage && icon && !content &&(
+			{linkPage && icon && !content && (
 				<Link to={linkPage}>
 					<Button type="button" onClick={handleClick}>
 						<ButtonIcon iconName={icon} />
 					</Button>
 				</Link>
+			)}
+			{!linkPage && icon && !content && (
+				<Button type="button" onClick={handleClick}>
+					<ButtonIcon iconName={icon} />
+				</Button>
 			)}
 		</>
 	);

@@ -89,6 +89,7 @@ const ButtonWrapper = styled.div`
 
 	& > a {
 		text-decoration: none;
+		display: inline-block;
 		
 		& button {
 			display: flex;
