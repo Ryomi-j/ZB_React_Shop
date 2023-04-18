@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import ButtonItem from "./common/Button";
 import { RiSunLine } from "react-icons/ri";
-import { MdOutlineShoppingBag } from "react-icons/md";
+import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -9,15 +9,6 @@ const Header = () => {
 	const [searchValue, setSearchValue] = useState("");
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
-	
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		const target = event.target as HTMLButtonElement;
-		
-		if (target.tagName === "BUTTON" || target.tagName === "A") {
-			const text = target.innerText;
-			const selectedCategory = categories[headerCategoryButtons.findIndex((category) => category === text)];
-		}
-	};
 
 	return (
 		<ContainerWrapper>
@@ -25,7 +16,7 @@ const Header = () => {
 				<Title>
 					<Link to="/">React Shop</Link>
 				</Title>
-				<Category onClick={handleClick}>
+				<Category>
 					{headerCategoryButtons.map((el, idx) => {
 						return <ButtonItem key={el} linkPage={`/${categories[idx]}`} content={el} />;
 					})}
@@ -33,7 +24,7 @@ const Header = () => {
 				<Buttons>
 					<ButtonItem icon={RiSunLine} isDarkMode />
 					<SearchBar placeholder="검색" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-					<ButtonItem linkPage="/cart" icon={MdOutlineShoppingBag} />
+					<ButtonItem linkPage="/cart" icon={BsCart3} />
 				</Buttons>
 			</Container>
 		</ContainerWrapper>
