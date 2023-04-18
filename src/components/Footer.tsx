@@ -9,7 +9,6 @@ import { ReactComponent as Discover } from "../assets/cards/discover.svg";
 import { RiFacebookFill } from "react-icons/ri";
 import { FiInstagram } from "react-icons/fi";
 import { AiFillGithub } from "react-icons/ai";
-import shortid from "shortid";
 
 const Footer = () => {
 	let cards = [Visa, Master, Amax, Paypal, Diners, Discover];
@@ -17,8 +16,8 @@ const Footer = () => {
 		<FooterContainer>
 			<Link to="https://zero-base.co.kr/"  target="_blank">제로베이스</Link>
 			<CardList>
-				{cards.map((Card) => (
-					<li key={shortid.generate()}>
+				{cards.map((Card, idx) => (
+					<li key={idx}>
 						<Card />
 					</li>
 				))}
