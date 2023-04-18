@@ -1,11 +1,7 @@
-interface CartItem {
-	id: number;
-	count: number;
-}
+import CartData from "./GetItem";
 
 const HandleCart = (productId: number) => {
-	const cartItem = localStorage.getItem("CART_ITEM");
-	let cart: { [key: string]: CartItem } = cartItem ? JSON.parse(cartItem) : {};
+	let cart = CartData();
 
 	if (cart[productId]) {
 		cart[productId].count++;

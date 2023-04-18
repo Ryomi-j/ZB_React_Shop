@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import GetData from "../components/api";
+import GetData from "../components/Api";
 import ButtonItem from "../components/common/Button";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";

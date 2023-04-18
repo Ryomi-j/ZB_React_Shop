@@ -3,12 +3,23 @@ import ButtonItem from "./common/Button";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CartData from "./GetItem";
 
 const Header = () => {
 	const [searchValue, setSearchValue] = useState("");
+	const [itemCount, setItemCount] = useState(0);
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
+
+	useEffect(() => {
+		const cartItem = CartData()
+		let items = 0;
+		for (const el of Object.values(cartItem)) {
+			items += el.count;
+		}
+		setItemCount(items);
+	}, [localStorage.getItem("CART_ITEM")]);
 
 	return (
 		<ContainerWrapper>
@@ -24,7 +35,10 @@ const Header = () => {
 				<Buttons>
 					<ButtonItem icon={RiSunLine} isDarkMode />
 					<SearchBar placeholder="검색" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-					<ButtonItem linkPage="/cart" icon={BsCart3} />
+					<CartBtn>
+						<span>{itemCount}</span>
+						<ButtonItem linkPage="/cart" icon={BsCart3} />
+					</CartBtn>
 				</Buttons>
 			</Container>
 		</ContainerWrapper>
@@ -92,11 +106,15 @@ const Buttons = styled.div`
 	align-items: center;
 	width: 20rem;
 	height: 3rem;
-	background-color: red
 
-	&:last-child {		
+	& a {
+		display: flex;
+		width: 3rem;
+		height: 3rem;
+
 		&:hover {
 			background: #1f293733;
+			border-radius: 0.5rem;
 		}
 	}
 `;
@@ -111,6 +129,36 @@ const SearchBar = styled.input`
 	border: none;
 	border-radius: 0.5rem;
 	background-color: rgba(31, 41, 55, 0.3);
+`;
+
+const CartBtn = styled.div`
+	position: relative;
+	color: #e5e7eb;
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 0.2rem;
+		left: 1.8rem;
+		background: #ef4444;
+		height: 1.2rem;
+		width: 1.5rem;
+		border-radius: 9999px;
+	}
+
+	& span {
+		position: absolute;
+		top: 0.35rem;
+		left: 2.2rem;
+		font-size: .8rem;
+	}
+
+	& button svg {
+		position: relative;
+		top: 0.3rem;
+		width: 1.5rem;
+	}
 `;
 
 export default Header;

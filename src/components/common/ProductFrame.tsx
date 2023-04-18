@@ -1,24 +1,10 @@
 import styled from "@emotion/styled";
-import GetData from "../api";
+import GetData from "../Api";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 interface ProductFrameProps {
 	category: string;
 	numberOfItems?: number;
-}
-
-interface DataType {
-	id: number;
-	title: string;
-	price: number;
-	description: string;
-	category: string;
-	image: string;
-	rating: {
-		rate: number;
-		count: number;
-	};
 }
 
 const ProductFrame = (props: ProductFrameProps) => {

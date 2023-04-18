@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
 import ButtonItem from "../components/common/Button";
+import CartData from "../components/GetItem";
+
+interface CartItem {
+	id: number;
+	count: number;
+}
 
 const CartPage = () => {
+	let cart = CartData()
+	console.log(cart)
 	return (
 		<ContainerWrapper>
 			<Container>
