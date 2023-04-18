@@ -25,7 +25,7 @@ const ProductDetailPage = () => {
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 
 	const item = GetData("https://fakestoreapi.com/products").find((el) => el.id === Number(productId));
-	
+
 	useEffect(() => {
 		setProduct(item);
 	}, [item]);
@@ -38,6 +38,7 @@ const ProductDetailPage = () => {
 					<>
 						<BreadCrumble>
 							<p>{categoryTitle[categoryIdx]}</p>
+							<Arrow></Arrow>
 							<span>{product.title}</span>
 						</BreadCrumble>
 						<DetailContainer>
@@ -87,28 +88,28 @@ const BreadCrumble = styled.div`
 	margin: 0 auto;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-	gap: 1.2rem;
 	line-height: 1.25rem;
 	font-size: 0.9rem;
 
 	& p {
 		line-height: 1.25rem;
-		padding-top: 0.5rem;
+	}
+`;
 
-		&::after {
-			content: "";
-			display: block;
-			position: relative;
-			top: -0.6rem;
-			left: 1.2rem;
-			margin-left: 0.5rem;
-			margin-right: 0.5rem;
-			height: 0.4rem;
-			width: 0.4rem;
-			border-top: 1px solid;
-			border-right: 1px solid;
-			transform: translate(-50%, -50%) rotate(45deg);
-		}
+const Arrow = styled.span`
+	&::after {
+		content: "";
+		display: block;
+		position: relative;
+		top: .25rem;
+		left:0rem;
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+		height: 0.4rem;
+		width: 0.4rem;
+		border-top: 1px solid;
+		border-right: 1px solid;
+		transform: translate(-50%, -50%) rotate(45deg);
 	}
 `;
 

@@ -27,8 +27,6 @@ const ProductFrame = (props: ProductFrameProps) => {
 	categoryItems = props.numberOfItems ? categoryItems.slice(0, props.numberOfItems) : categoryItems;
 
 	const navigate = useNavigate();
-	const [item, setItem] = useState<DataType|null>(null)
-
 
 	const handleClick = (id: number) => {
 		navigate(`/product/${id}`);

@@ -9,8 +9,8 @@ const CategoryPage = () => {
 	const categories = ["clothing", "jewelery", "electronics"];
 	
 	const categoryIdx = dataCategory.findIndex((el) => el === category);
-	console.log(categoryIdx);
 
+	
 	return (
 		<ContainerWrapper>
 			<Container>
