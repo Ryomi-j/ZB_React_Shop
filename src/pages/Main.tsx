@@ -2,11 +2,7 @@ import styled from "@emotion/styled";
 import MainCarousel from "../components/Carousel";
 import ProductFrame from "../components/common/ProductFrame";
 
-
-
 const Main = () => {
-
-
 	const carouselItems = [
 		{
 			title: "fashion",
@@ -36,7 +32,7 @@ const Main = () => {
 
 	return (
 		<Wrapper>
-			<MainCarousel images={carouselItems}  />
+			<MainCarousel images={carouselItems} />
 			<CategoryWrapper>
 				<Category>패션</Category>
 				<ProductFrame category="clothing" numberOfItems={4} />
