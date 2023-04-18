@@ -3,23 +3,12 @@ import ButtonItem from "./common/Button";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import CartData from "./GetItem";
+import { useState } from "react";
 
-const Header = () => {
+const Header = ({ cartCount }: { cartCount: number }) => {
 	const [searchValue, setSearchValue] = useState("");
-	const [itemCount, setItemCount] = useState(0);
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
-
-	useEffect(() => {
-		const cartItem = CartData()
-		let items = 0;
-		for (const el of Object.values(cartItem)) {
-			items += el.count;
-		}
-		setItemCount(items);
-	}, [localStorage.getItem("CART_ITEM")]);
 
 	return (
 		<ContainerWrapper>
@@ -36,7 +25,7 @@ const Header = () => {
 					<ButtonItem icon={RiSunLine} isDarkMode />
 					<SearchBar placeholder="검색" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
 					<CartBtn>
-						<span>{itemCount}</span>
+						<span>{cartCount}</span>
 						<ButtonItem linkPage="/cart" icon={BsCart3} />
 					</CartBtn>
 				</Buttons>
@@ -151,7 +140,7 @@ const CartBtn = styled.div`
 		position: absolute;
 		top: 0.35rem;
 		left: 2.2rem;
-		font-size: .8rem;
+		font-size: 0.8rem;
 	}
 
 	& button svg {
