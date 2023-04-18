@@ -18,10 +18,6 @@ interface MainCarouselProps {
 }
 
 const MainCarousel = ({ images }: MainCarouselProps) => {
-	const handleClick = (image:Image) => {
-		
-	}
-
 	return (
 		<Wrapper>
 			<StyledCarousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
@@ -29,7 +25,7 @@ const MainCarousel = ({ images }: MainCarouselProps) => {
 					<div key={image.title}>
 						<Caption>{image.caption}</Caption>
 						<Detail>{image.detail}</Detail>
-						<ButtonWrapper onClick={() => handleClick(image)}>
+						<ButtonWrapper>
 							<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
 						</ButtonWrapper>
 						<Img src={image.src} alt={image.alt} />
@@ -89,7 +85,7 @@ const ButtonWrapper = styled.div`
 	& > a {
 		text-decoration: none;
 		display: inline-block;
-		
+
 		& button {
 			display: flex;
 			align-items: center;
@@ -100,9 +96,9 @@ const ButtonWrapper = styled.div`
 			height: 3rem;
 			font-size: 1rem;
 			opacity: 1;
-	
+
 			&:hover {
-				background:  #303640;
+				background: #303640;
 			}
 		}
 	}
