@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import GetData from "../components/api";
 import ButtonItem from "../components/common/Button";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-interface ProductDetailPageProps {
-	selectedItem: number;
-}
 interface DataProps {
 	id: number;
 	title: string;
@@ -18,35 +17,40 @@ interface DataProps {
 	};
 }
 
-const ProductDetailPage = (props: ProductDetailPageProps) => {
+const ProductDetailPage = () => {
+	const { productId } = useParams();
+	const [product, setProduct] = useState<DataProps | undefined>(undefined);
+
 	const categories = ["clothing", "jewelery", "electronics"];
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 
-	const item = GetData("https://fakestoreapi.com/products").find((el) => el.id === props.selectedItem);
-
-	const categoryIdx = categories.findIndex((el) => item?.category.includes(el));
+	const item = GetData("https://fakestoreapi.com/products").find((el) => el.id === Number(productId));
+	
+	useEffect(() => {
+		setProduct(item);
+	}, [item]);
+	const categoryIdx = categories.findIndex((el) => product?.category.includes(el));
 
 	return (
 		<ContainerWrapper>
 			<Container>
-				{item ? (
+				{product ? (
 					<>
 						<BreadCrumble>
 							<p>{categoryTitle[categoryIdx]}</p>
-							<span>{item.title}</span>
+							<span>{product.title}</span>
 						</BreadCrumble>
 						<DetailContainer>
 							<ImageContainer>
-								<img src={item.image} alt={`${item.category} image`} />
+								<img src={product.image} alt={`${product.category} image`} />
 							</ImageContainer>
 							<Details>
-								<h2>{item.title}</h2>
-								<p>{item.description}</p>
+								<h2>{product.title}</h2>
+								<p>{product.description}</p>
 								<Rate>
-									{" "}
-									{item.rating.rate} / {item.rating.count} 참여
+									{product.rating.rate} / {product.rating.count} 참여
 								</Rate>
-								<Price>{`$${item.price}`}</Price>
+								<Price>{`$${product.price}`}</Price>
 								<ButtonWrapper>
 									<ButtonItem content="장바구니에 담기" />
 									<ButtonItem content="장바구니로 이동" linkPage="/" />
@@ -55,7 +59,7 @@ const ProductDetailPage = (props: ProductDetailPageProps) => {
 						</DetailContainer>
 					</>
 				) : (
-					<p>Loading...</p>
+					<LoadingBox>Loading...</LoadingBox>
 				)}
 			</Container>
 		</ContainerWrapper>
@@ -136,16 +140,16 @@ const Details = styled.div`
 	gap: 0.5rem;
 	padding: 2rem 3rem;
 	width: 35.5rem;
-    
+
 	& h2 {
-        font-size: 1.25rem;
+		font-size: 1.25rem;
 		font-weight: bold;
-        line-height: 1.8rem;
+		line-height: 1.8rem;
 	}
 
-    & p {
-        line-height: 1.5rem;
-    }
+	& p {
+		line-height: 1.5rem;
+	}
 `;
 
 const Rate = styled.p`
@@ -177,5 +181,13 @@ const ButtonWrapper = styled.div`
 			color: #1f2947;
 		}
 	}
+`;
+
+const LoadingBox = styled.div`
+	padding-top: 15rem;
+	width: 56rem;
+	height: 20rem;
+	text-align: center;
+	font-size: 3rem;
 `;
 export default ProductDetailPage;

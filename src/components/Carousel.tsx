@@ -15,12 +15,11 @@ interface Image {
 
 interface MainCarouselProps {
 	images: Image[];
-	setCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const MainCarousel = ({ images, setCategory }: MainCarouselProps) => {
+const MainCarousel = ({ images }: MainCarouselProps) => {
 	const handleClick = (image:Image) => {
-		setCategory(image.title)
+		
 	}
 
 	return (

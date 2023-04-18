@@ -4,11 +4,9 @@ import { RiSunLine } from "react-icons/ri";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-interface HeaderProps {
-	setCategory: React.Dispatch<React.SetStateAction<string>>;
-}
 
-const Header = ({ setCategory }: HeaderProps) => {
+
+const Header = () => {
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
 
@@ -20,7 +18,7 @@ const Header = ({ setCategory }: HeaderProps) => {
 			const selectedCategory = categories[headerCategoryButtons.findIndex((category) => category === text)];
 
 			if (selectedCategory !== undefined) {
-				setCategory(selectedCategory);
+				console.log('header')
 			}
 		}
 	};

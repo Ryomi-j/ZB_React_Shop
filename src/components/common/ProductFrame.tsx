@@ -1,11 +1,24 @@
 import styled from "@emotion/styled";
 import GetData from "../api";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 interface ProductFrameProps {
 	category: string;
 	numberOfItems?: number;
-	setItem: React.Dispatch<React.SetStateAction<number>>
+}
+
+interface DataType {
+	id: number;
+	title: string;
+	price: number;
+	description: string;
+	category: string;
+	image: string;
+	rating: {
+		rate: number;
+		count: number;
+	};
 }
 
 const ProductFrame = (props: ProductFrameProps) => {
@@ -14,9 +27,10 @@ const ProductFrame = (props: ProductFrameProps) => {
 	categoryItems = props.numberOfItems ? categoryItems.slice(0, props.numberOfItems) : categoryItems;
 
 	const navigate = useNavigate();
+	const [item, setItem] = useState<DataType|null>(null)
+
 
 	const handleClick = (id: number) => {
-		props.setItem(id)
 		navigate(`/product/${id}`);
 	};
 

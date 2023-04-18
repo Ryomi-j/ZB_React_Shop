@@ -12,6 +12,7 @@ const NotFound = () => {
 };
 
 const Container = styled.section`
+	height: 45.7rem;
 	text-align: center;
 	color: #1f2937;
 

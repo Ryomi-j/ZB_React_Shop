@@ -1,28 +1,25 @@
 import styled from "@emotion/styled";
 import ProductFrame from "../components/common/ProductFrame";
 
-interface CategoryPageProps {
-	category: string;
-	setItem: React.Dispatch<React.SetStateAction<number>>;
-}
 
-const CategoryPage = (props: CategoryPageProps) => {
+
+const CategoryPage = () => {
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 	const dataCategory = ["fashion", "jewelery", "electronics"];
 	const categories = ["clothing", "jewelery", "electronics"];
 
-	const categoryIdx = dataCategory.findIndex((el) => el === props.category);
+	// const categoryIdx = dataCategory.findIndex((el) => el === props.category);
 
 	return (
 		<ContainerWrapper>
 			<Container>
 				<BreadCrumble>
 					<p>홈</p>
-					<span>{categoryTitle[categoryIdx]}</span>
+					{/* <span>{categoryTitle[categoryIdx]}</span> */}
 				</BreadCrumble>
-				<Category>{categoryTitle[categoryIdx]}</Category>
+				{/* <Category>{categoryTitle[categoryIdx]}</Category> */}
 				<ProductWrapper>
-					<ProductFrame category={categories[categoryIdx]} setItem={props.setItem} />
+					{/* <ProductFrame category={categories[categoryIdx]}/> */}
 				</ProductWrapper>
 			</Container>
 		</ContainerWrapper>
