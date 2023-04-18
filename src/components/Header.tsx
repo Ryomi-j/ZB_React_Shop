@@ -3,23 +3,19 @@ import ButtonItem from "./common/Button";
 import { RiSunLine } from "react-icons/ri";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { Link } from "react-router-dom";
-
-
+import { useState } from "react";
 
 const Header = () => {
+	const [searchValue, setSearchValue] = useState("");
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
-
+	
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const target = event.target as HTMLButtonElement;
-
+		
 		if (target.tagName === "BUTTON" || target.tagName === "A") {
 			const text = target.innerText;
 			const selectedCategory = categories[headerCategoryButtons.findIndex((category) => category === text)];
-
-			if (selectedCategory !== undefined) {
-				console.log('header')
-			}
 		}
 	};
 
@@ -36,8 +32,8 @@ const Header = () => {
 				</Category>
 				<Buttons>
 					<ButtonItem icon={RiSunLine} isDarkMode />
-					<SearchBar placeholder="검색" />
-					<ButtonItem linkPage="/" icon={MdOutlineShoppingBag} />
+					<SearchBar placeholder="검색" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+					<ButtonItem linkPage="/cart" icon={MdOutlineShoppingBag} />
 				</Buttons>
 			</Container>
 		</ContainerWrapper>

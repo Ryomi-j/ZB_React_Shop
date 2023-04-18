@@ -3,8 +3,9 @@ import GetData from "../components/api";
 import ButtonItem from "../components/common/Button";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import HandleCart from "../components/HandleCart";
 
-interface DataProps {
+export interface DataProps {
 	id: number;
 	title: string;
 	price: number;
@@ -29,6 +30,7 @@ const ProductDetailPage = () => {
 	useEffect(() => {
 		setProduct(item);
 	}, [item]);
+
 	const categoryIdx = categories.findIndex((el) => product?.category.includes(el));
 
 	return (
@@ -53,8 +55,8 @@ const ProductDetailPage = () => {
 								</Rate>
 								<Price>{`$${product.price}`}</Price>
 								<ButtonWrapper>
-									<ButtonItem content="장바구니에 담기" />
-									<ButtonItem content="장바구니로 이동" linkPage="/" />
+									<ButtonItem content="장바구니에 담기" handleClick={() => HandleCart(product.id)} />
+									<ButtonItem content="장바구니로 이동" linkPage="/cart" />
 								</ButtonWrapper>
 							</Details>
 						</DetailContainer>
@@ -101,8 +103,8 @@ const Arrow = styled.span`
 		content: "";
 		display: block;
 		position: relative;
-		top: .25rem;
-		left:0rem;
+		top: 0.25rem;
+		left: 0rem;
 		margin-left: 0.5rem;
 		margin-right: 0.5rem;
 		height: 0.4rem;
@@ -172,6 +174,10 @@ const ButtonWrapper = styled.div`
 		font-size: 0.875rem;
 		background: #570df8;
 		color: #ffffff;
+
+		&:hover {
+			background: #4506cb;
+		}
 	}
 
 	& a {
@@ -180,6 +186,11 @@ const ButtonWrapper = styled.div`
 			border: 1px solid currentColor;
 			background: #ffffff;
 			color: #1f2947;
+
+			&:hover {
+				background: #1f2937;
+				color: #ffffff;
+			}
 		}
 	}
 `;
