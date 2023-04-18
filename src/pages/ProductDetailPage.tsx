@@ -4,6 +4,8 @@ import ButtonItem from "../components/common/Button";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HandleCart from "../components/HandleCart";
+import { CartItems } from "../App";
+import NotFound from "./NotFound";
 
 export interface DataProps {
 	id: number;
@@ -18,9 +20,22 @@ export interface DataProps {
 	};
 }
 
-const ProductDetailPage = () => {
+const initialDataProps = {
+	id: 0,
+	title: "",
+	price: 0,
+	description: "",
+	category: "",
+	image: "",
+	rating: {
+		rate: 0,
+		count: 0,
+	},
+};
+
+const ProductDetailPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.SetStateAction<CartItems>> }) => {
 	const { productId } = useParams();
-	const [product, setProduct] = useState<DataProps | undefined>(undefined);
+	const [product, setProduct] = useState<DataProps>(initialDataProps);
 
 	const categories = ["clothing", "jewelery", "electronics"];
 	const categoryTitle = ["패션", "액세서리", "디지털"];
@@ -28,15 +43,33 @@ const ProductDetailPage = () => {
 	const item = GetData("https://fakestoreapi.com/products").find((el) => el.id === Number(productId));
 
 	useEffect(() => {
-		setProduct(item);
+		setProduct(item ?? initialDataProps);
 	}, [item]);
+
+	const handleCartData = (product: DataProps) => {
+		HandleCart(product.id, 1);
+		setCartItem((prev) => {
+			const count = prev.cartItem[product.id]?.count ?? 0;
+			return {
+				...prev,
+				cartCount: prev.cartCount + 1,
+				cartItem: {
+					...prev.cartItem,
+					[product.id]: {
+						id: product.id,
+						count: count + 1,
+					},
+				},
+			};
+		});
+	};
 
 	const categoryIdx = categories.findIndex((el) => product?.category.includes(el));
 
 	return (
 		<ContainerWrapper>
 			<Container>
-				{product ? (
+				{Number(product.id) > 0 ? (
 					<>
 						<BreadCrumble>
 							<p>{categoryTitle[categoryIdx]}</p>
@@ -55,12 +88,14 @@ const ProductDetailPage = () => {
 								</Rate>
 								<Price>{`$${product.price}`}</Price>
 								<ButtonWrapper>
-									<ButtonItem content="장바구니에 담기" handleClick={() => HandleCart(product.id)} />
+									<ButtonItem content="장바구니에 담기" handleClick={() => handleCartData(product)} />
 									<ButtonItem content="장바구니로 이동" linkPage="/cart" />
 								</ButtonWrapper>
 							</Details>
 						</DetailContainer>
 					</>
+				) : Number(product.id) === 0 ? (
+					<NotFound />
 				) : (
 					<LoadingBox>Loading...</LoadingBox>
 				)}
@@ -163,6 +198,7 @@ const Price = styled.p`
 	margin: 1.2rem 0 1rem;
 	font-size: 1.875rem;
 `;
+
 const ButtonWrapper = styled.div`
 	display: flex;
 	gap: 1rem;

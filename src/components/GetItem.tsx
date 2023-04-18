@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { CartItem } from "../App";
 
-interface CartItem {
-	id: number;
-	count: number;
-}
+export const getCartCount = () => {
+	const count = localStorage.getItem("CART_COUNT");
+	return count ? parseInt(count) : 0;
+};
 
 const CartData = () => {
 	const cartItem = localStorage.getItem("CART_ITEM");
