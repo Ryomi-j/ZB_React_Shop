@@ -1,29 +1,36 @@
 import styled from "@emotion/styled";
 import ProductFrame from "../components/common/ProductFrame";
 import { useParams } from "react-router-dom";
+import NotFound from "./NotFound";
 
 const CategoryPage = () => {
 	const { category } = useParams();
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 	const dataCategory = ["fashion", "jewelery", "electronics"];
 	const categories = ["clothing", "jewelery", "electronics"];
-	
+
 	const categoryIdx = dataCategory.findIndex((el) => el === category);
 
-	
+	console.log(category);
 	return (
-		<ContainerWrapper>
-			<Container>
-				<BreadCrumble>
-					<p>홈</p>
-					<span>{categoryTitle[categoryIdx]}</span>
-				</BreadCrumble>
-				<Category>{categoryTitle[categoryIdx]}</Category>
-				<ProductWrapper>
-					<ProductFrame category={categories[categoryIdx]}/>
-				</ProductWrapper>
-			</Container>
-		</ContainerWrapper>
+		<>
+			{categoryIdx === -1 ? (
+				<NotFound />
+			) : (
+				<ContainerWrapper>
+					<Container>
+						<BreadCrumble>
+							<p>홈</p>
+							<span>{categoryTitle[categoryIdx]}</span>
+						</BreadCrumble>
+						<Category>{categoryTitle[categoryIdx]}</Category>
+						<ProductWrapper>
+							<ProductFrame category={categories[categoryIdx]} />
+						</ProductWrapper>
+					</Container>
+				</ContainerWrapper>
+			)}
+		</>
 	);
 };
 
