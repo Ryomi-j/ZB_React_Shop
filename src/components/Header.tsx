@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
-import { useMediaQuery } from "usehooks-ts";
 import Modal from "./common/Modal";
 
 interface HeaderProps {

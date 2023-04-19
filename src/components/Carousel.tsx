@@ -39,8 +39,8 @@ const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 
 const Wrapper = styled.section`
 	position: relative;
-	top: 3rem;
-	height: 30rem;
+	top: 3.2rem;
+	height: 720px;
 	overflow: hidden;
 `;
 

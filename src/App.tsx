@@ -27,6 +27,7 @@ function App() {
 	const [cartItem, setCartItem] = useState<CartItems>({ cartCount: 0, cartItem: {} });
 	const [isFirstRender, setIsFirstRender] = useState(true);
 	const { isDarkMode, toggle } = useDarkMode();
+	
 	useEffect(() => {
 		if (isFirstRender) {
 			const cart = CartData();
