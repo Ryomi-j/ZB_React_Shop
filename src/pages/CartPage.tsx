@@ -23,7 +23,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	const apiData = GetData("https://fakestoreapi.com/products");
 
 	let cartItem: Array<DataProps> = [];
-	
+
 	for (let i = 0; i < cart.length; i++) {
 		apiData.map((el) => {
 			if (el.id === cart[i].id) {
@@ -34,6 +34,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 
 	const addOrSub = (product: DataProps, operator: string) => {
 		HandleCart(product.id, 1);
+		console.log(HandleCart(product.id, 1));
 		if (operator === "+") {
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
@@ -49,9 +50,8 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 					},
 				};
 			});
-		}
-
-		if (operator === "-") {
+		} else {
+			console.log(operator);
 			HandleCart(product.id, -1);
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
@@ -90,7 +90,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 											<h2>
 												<a>{el.title}</a>
 											</h2>
-											<p>{el.price}</p>
+											<p>$ {el.price}</p>
 											<ButtonWrapper>
 												<ButtonItem icon={AiOutlineMinusCircle} handleClick={() => addOrSub(el, "-")} />
 												<p>{cart[idx].count}</p>
@@ -119,18 +119,22 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 
 const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
-	height: 45.7rem;
+	min-height: 46rem;
 	margin: 0 auto;
 	padding-top: 3.5rem;
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
 	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
-`;
-
-const Container = styled.div`
+	`;
+	
+	const Container = styled.div`
 	max-width: 55rem;
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
 	width: 100%;
+
+	@media screen and (max-width: 920px) {
+		padding: 1.8rem 0
+	}
 `;
 
 const BreadCrumble = styled.div`
@@ -169,23 +173,49 @@ const CartItemContainerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding-top: 3.5rem;
-	width: 100%
-	color: #1f2937;
+	width: 100%;
+	color: inherit;
+
+	@media screen and (max-width: 920px) {
+		min-height: 27.5rem;
+
+		& > div {
+			flex-direction: column;
+			align-items: center;
+			margin: 0 auto;
+
+			& figure {
+				padding: 1rem;
+				height: 13.5rem;
+			}
+
+			& div {
+				padding: 0.5rem;
+
+				& div {
+					padding-left: 13rem;
+				}
+
+				& h2 {
+					font-size: 1rem
+				}
+			}
+		}
+	}
 `;
 
 const CartItemContainer = styled.div`
 	display: flex;
 	margin: 1rem auto;
 	max-width: 58rem;
-	height: 15.5rem;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.figure`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: 1rem;
-	width: 14rem;
+	max-width: 14rem;
 	background: #ffffff;
 	border-radius: 20px;
 
@@ -214,8 +244,8 @@ const ProductDetailContainer = styled.div`
 
 const ButtonWrapper = styled.div`
 	display: flex;
-	padding-top: 1rem;
-	margin-left: 24rem;
+	padding-top: 2rem;
+	padding-left: 14rem;
 	width: 10rem;
 	text-align: center;
 
@@ -245,6 +275,11 @@ const Wrapper = styled.div`
 		background: #641ae6;
 		width: 5.28rem;
 		font-size: 0.9rem;
+	}
+
+	@media screen and (max-width: 920px) {
+		width: 100%;
+		height: 100%;
 	}
 `;
 const TotalPrice = styled.p`

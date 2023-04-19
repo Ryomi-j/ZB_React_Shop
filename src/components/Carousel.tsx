@@ -42,6 +42,18 @@ const Wrapper = styled.section`
 	top: 3.2rem;
 	height: 720px;
 	overflow: hidden;
+
+	@media screen and (max-width: 1300px) {
+		height: 470px;
+	}
+
+	@media screen and (max-width: 970px) {
+		height: 350px;
+	}
+
+	@media screen and (max-width: 760px) {
+		height: 250px;
+	}
 `;
 
 const StyledCarousel = styled(Carousel)`
@@ -65,6 +77,23 @@ const Caption = styled.h2`
 	font-size: 2.2rem;
 	text-align: left;
 	z-index: 5;
+
+	@media screen and (max-width: 1300px) {
+		top: 5rem;
+		left: 4rem;
+		font-size: 1.5rem;
+	}
+
+	@media screen and (max-width: 970px) {
+		top: 4rem;
+		font-size: 1.2rem;
+	}
+
+	@media screen and (max-width: 760px) {
+		top: 3rem;
+		left: 3rem;
+		font-size: 1rem;
+	}
 `;
 
 const Detail = styled.p`
@@ -75,6 +104,23 @@ const Detail = styled.p`
 	color: white;
 	text-align: left;
 	z-index: 2;
+
+	@media screen and (max-width: 1300px) {
+		top: 6rem;
+		left: 4rem;
+		font-size: 1rem;
+	}
+
+	@media screen and (max-width: 970px) {
+		top: 5rem;
+		font-size: 0.8rem;
+	}
+
+	@media screen and (max-width: 760px) {
+		top: 4rem;
+		left: 3rem;
+		font-size: .8rem;
+	}
 `;
 
 const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
@@ -85,6 +131,20 @@ const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 	color: white;
 	text-align: left;
 	z-index: 2;
+
+	@media screen and (max-width: 1300px) {
+		top: 7rem;
+		left: 4rem;
+	}
+
+	@media screen and (max-width: 970px) {
+		top: 6rem;
+	}
+
+	@media screen and (max-width: 760px) {
+		top: 5rem;
+		left: 3rem;
+	}
 
 	& > a {
 		text-decoration: none;
@@ -104,6 +164,19 @@ const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 			&:hover {
 				background: ${(props) => (props.isDarkMode ? "#111318" : "#303640")};
 			}
+
+			@media screen and (max-width: 970px) {
+				font-size: .7rem;
+				height:2rem;
+			}
+		
+			@media screen and (max-width: 760px) {
+				font-size: .5rem;
+
+				& svg {
+					width: 1rem;
+				}
+			}
 		}
 	}
 `;
@@ -112,6 +185,11 @@ const Img = styled.img`
 	object-fit: cover;
 	position: relative;
 	top: -12rem;
+
+	@media screen and (max-width: 680px) {
+		top: -5rem;
+	}
+	
 `;
 
 export default MainCarousel;

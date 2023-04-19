@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import ButtonItem from "./common/Button";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
@@ -13,32 +13,42 @@ interface HeaderProps {
 	isDarkMode: boolean;
 }
 
-interface DarkModeProps {
+interface stateProps {
 	isDarkMode: boolean;
+	modalState?: boolean;
 }
 
 const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 	const [searchValue, setSearchValue] = useState("");
-	// const vp1300 = useMediaQuery("(min-width: 1300px");
+	const [modalState, setModalState] = useState(false);
 
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
 
+	const handleClick = () => {
+		setModalState(!modalState);
+	};
 
 	return (
 		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
+				<CategoryDropdown onClick={handleClick}>
+					<div></div>
+					<div></div>
+					<div></div>
+				</CategoryDropdown>
+
 				<Title isDarkMode={isDarkMode}>
 					<Link to="/">React Shop</Link>
 				</Title>
-				<Category isDarkMode={isDarkMode}>
+				<Category isDarkMode={isDarkMode} modalState={modalState}>
 					{headerCategoryButtons.map((el, idx) => {
-						return <ButtonItem key={el} linkPage={`/${categories[idx]}`} content={el} />;
+						return <ButtonItem key={el} linkPage={`/${categories[idx]}`} content={el}  handleClick={() => setModalState(!modalState)}/>;
 					})}
 				</Category>
 				<ButtonWrapper isDarkMode={isDarkMode}>
 					<ButtonItem icon={isDarkMode ? RiSunLine : BsMoon} handleClick={setDarkMode} />
-					<DropDown>
+					<div>
 						<SearchBar
 							placeholder="검색"
 							value={searchValue}
@@ -46,8 +56,8 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 								setSearchValue(e.target.value);
 							}}
 						/>
-						<Modal searchValue={searchValue} setSearchValue={setSearchValue}/>
-					</DropDown>
+						<Modal searchValue={searchValue} setSearchValue={setSearchValue} />
+					</div>
 					<CartBtn>
 						<span>{cartCount}</span>
 						<ButtonItem linkPage="/cart" icon={BsCart3} />
@@ -58,7 +68,7 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 	);
 };
 
-const ContainerWrapper = styled.header<DarkModeProps>`
+const ContainerWrapper = styled.header<stateProps>`
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -76,12 +86,12 @@ const ContainerWrapper = styled.header<DarkModeProps>`
 
 const Container = styled.div`
 	display: flex;
-	width: 55rem;
+	max-width: 55rem;
 	justify-content: space-around;
 	align-items: center;
 `;
 
-const Title = styled.h1<DarkModeProps>`
+const Title = styled.h1<stateProps>`
 	font-weight: bold;
 	font-size: 1.1rem;
 	cursor: pointer;
@@ -93,13 +103,36 @@ const Title = styled.h1<DarkModeProps>`
 	}
 `;
 
-const Category = styled.nav<DarkModeProps>`
+const Category = styled.nav<stateProps>`
 	display: flex;
 	flex-shrink: 3;
 	flex-grow: 2;
 	align-items: center;
 	justify-content: left;
 	margin-left: 0.5rem;
+
+	@media screen and (max-width: 940px) {
+		display:  ${(props) => (props.modalState ? "flex" : "none")};
+		align-items: center;
+		position: absolute;
+		flex-direction: column;
+		top: 4rem;
+		left: 0;
+		width: 6rem;
+		background: #ffffff;
+		border: 1px solid rgb(229 231 235);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+
+		& > a {
+			width: 100%;
+			& button {
+				width: 100%;
+				justify-content: center;
+				border-radius: 5px;
+			}
+		}
+	}
 
 	& > a {
 		text-decoration: none;
@@ -115,7 +148,25 @@ const Category = styled.nav<DarkModeProps>`
 	}
 `;
 
-const ButtonWrapper = styled.div<DarkModeProps>`
+const CategoryDropdown = styled.div`
+	display: none;
+
+	@media screen and (max-width: 940px) {
+		display: block;
+		cursor: pointer;
+		margin: auto 0;
+
+		& div {
+			margin: 0.3rem;
+			width: 2rem;
+			height: 0.2rem;
+			background-color: #374151;
+			z-index: 999;
+		}
+	}
+`;
+
+const ButtonWrapper = styled.div<stateProps>`
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -152,7 +203,6 @@ const ButtonWrapper = styled.div<DarkModeProps>`
 		}
 	}
 `;
-const DropDown = styled.div``;
 const SearchBar = styled.input`
 	display: block;
 	width: 10rem;

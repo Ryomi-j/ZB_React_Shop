@@ -44,7 +44,13 @@ const Container = styled.ul`
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	gap: 1.5rem;
-	margin-bottom: 4rem;
+	margin: 0 auto 4rem;
+
+	@media screen and (max-width: 760px) {
+		flex-wrap: nowrap;
+		overflow: auto;
+	}
+
 `;
 
 const ProductContainer = styled.li`
