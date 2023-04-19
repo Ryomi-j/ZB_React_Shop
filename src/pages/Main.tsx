@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import MainCarousel from "../components/Carousel";
 import ProductFrame from "../components/common/ProductFrame";
 
-const Main = () => {
+const Main = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	const carouselItems = [
 		{
 			title: "fashion",
@@ -31,9 +31,9 @@ const Main = () => {
 	];
 
 	return (
-		<Wrapper>
-			<MainCarousel images={carouselItems} />
-			<CategoryWrapper>
+		<Wrapper isDarkMode={isDarkMode}>
+			<MainCarousel images={carouselItems} isDarkMode={isDarkMode} />
+			<CategoryWrapper isDarkMode={isDarkMode}>
 				<Category>패션</Category>
 				<ProductFrame category="clothing" numberOfItems={4} />
 				<Category>액세서리</Category>
@@ -45,21 +45,33 @@ const Main = () => {
 	);
 };
 
-const Wrapper = styled.main`
+const Wrapper = styled.main<{ isDarkMode: boolean }>`
 	position: relative;
 	width: 100%;
-	height: 170rem;
+	min-height: 170rem;
+	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
+	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 `;
 
-const CategoryWrapper = styled.section`
-	margin: 5.5rem 6rem;
+const CategoryWrapper = styled.section<{ isDarkMode: boolean }>`
+	margin: 9rem auto;
+	max-width: 57rem;
+
+	& ul > li {
+		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
+
+		& > div {
+			background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
+			color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
+		}
+	}
 `;
 
 const Category = styled.h2`
 	margin-bottom: 2rem;
 	font-size: 2.2rem;
 	font-weight: bold;
-	color: #1f2937;
+	color: inherit;
 	text-align: center;
 `;
 

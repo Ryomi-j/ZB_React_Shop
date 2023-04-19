@@ -33,7 +33,12 @@ const initialDataProps = {
 	},
 };
 
-const ProductDetailPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.SetStateAction<CartItems>> }) => {
+interface ProductDetailPageProps {
+	setCartItem: React.Dispatch<React.SetStateAction<CartItems>>;
+	isDarkMode: boolean;
+}
+
+const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) => {
 	const { productId } = useParams();
 	const [product, setProduct] = useState<DataProps>(initialDataProps);
 
@@ -67,7 +72,7 @@ const ProductDetailPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.
 	const categoryIdx = categories.findIndex((el) => product?.category.includes(el));
 
 	return (
-		<ContainerWrapper>
+		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
 				{Number(product.id) > 0 ? (
 					<>
@@ -104,11 +109,13 @@ const ProductDetailPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.
 	);
 };
 
-const ContainerWrapper = styled.section`
+const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
 	height: 45.7rem;
 	margin: 0 auto;
 	padding-top: 4rem;
+	background-color: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
+	color: ${(props) => (props.isDarkMode ? "#a6adba" : " #1f2947")};
 `;
 
 const Container = styled.div`
@@ -155,7 +162,7 @@ const DetailContainer = styled.div`
 	margin-top: 3.5rem;
 	width: 56rem;
 	height: 23rem;
-	color: #1f2947;
+	color: inherit;
 	letter-spacing: 0.02rem;
 `;
 
@@ -164,6 +171,8 @@ const ImageContainer = styled.figure`
 	align-items: center;
 	justify-content: center;
 	padding: 1rem;
+	background: #ffffff;
+	border-radius: 20px;
 
 	& img {
 		object-fit: contain;

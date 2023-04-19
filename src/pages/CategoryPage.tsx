@@ -3,7 +3,7 @@ import ProductFrame from "../components/common/ProductFrame";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 
-const CategoryPage = () => {
+const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	const { category } = useParams();
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 	const dataCategory = ["fashion", "jewelery", "electronics"];
@@ -11,13 +11,12 @@ const CategoryPage = () => {
 
 	const categoryIdx = dataCategory.findIndex((el) => el === category);
 
-	console.log(category);
 	return (
 		<>
 			{categoryIdx === -1 ? (
 				<NotFound />
 			) : (
-				<ContainerWrapper>
+				<ContainerWrapper isDarkMode={isDarkMode}>
 					<Container>
 						<BreadCrumble>
 							<p>홈</p>
@@ -34,20 +33,33 @@ const CategoryPage = () => {
 	);
 };
 
-const ContainerWrapper = styled.section`
+const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
 	margin: 0 auto;
 	padding-top: 4rem;
+	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
+	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
+
+	& div div ul {
+		
+		& > li {
+			border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
+			 div {
+				background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
+				color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
+			}
+		}
+		
+	}
 `;
 
 const Container = styled.div`
-	width: 43rem;
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
-	width: 100%;
+	max-width: 57rem;
 `;
 
-const BreadCrumble = styled.div`
+const BreadCrumble = styled.ul`
 	display: flex;
 	align-items: center;
 	width: 60rem;
@@ -81,21 +93,23 @@ const BreadCrumble = styled.div`
 `;
 
 const Category = styled.h2`
-	margin-top: 1.8rem;
+	margin-top: 0.4rem;
 	margin-bottom: 2.2rem;
 	font-size: 2.2rem;
 	font-weight: bold;
-	color: #1f2937;
+	color: inherit;
 	text-align: center;
 `;
 
-const ProductWrapper = styled.div`
+const ProductWrapper = styled.div`<{ isDarkMode: boolean }>
 	width: 60rem;
 	margin: 0 auto;
-	& div {
+
+	& > ul li div {
 		justify-content: flex-start;
 		flex-direction: row;
 		flex-wrap: wrap;
+
 	}
 `;
 

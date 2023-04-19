@@ -13,13 +13,18 @@ interface CartItem {
 	count: number;
 }
 
-const CartPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.SetStateAction<CartItems>> }) => {
+interface CartPageProps {
+	isDarkMode: boolean;
+	setCartItem: React.Dispatch<React.SetStateAction<CartItems>>;
+}
+
+const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	const cart = Object.values(CartData());
 	const apiData = GetData("https://fakestoreapi.com/products");
 
 	let cartItem: Array<DataProps> = [];
 	for (let i = 0; i < cart.length; i++) {
-		apiData.map((el, idx) => {
+		apiData.map((el) => {
 			if (el.id === cart[i].id) {
 				cartItem.push(el);
 			}
@@ -66,7 +71,7 @@ const CartPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.SetStateA
 	};
 
 	return (
-		<ContainerWrapper>
+		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
 				<BreadCrumble>
 					<p>홈</p>
@@ -102,22 +107,27 @@ const CartPage = ({ setCartItem }: { setCartItem: React.Dispatch<React.SetStateA
 							<ButtonItem content="담으러 가기" linkPage="/" />
 						</EmptyCartWrapper>
 					)}
-					<ButtonItem content="구매하기" />
+					<Wrapper>
+						<TotalPrice>Total: $</TotalPrice>
+						<ButtonItem content="구매하기" />
+					</Wrapper>
 				</CartItemContainerWrapper>
 			</Container>
 		</ContainerWrapper>
 	);
 };
 
-const ContainerWrapper = styled.section`
+const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
+	height: 45.7rem;
 	margin: 0 auto;
 	padding-top: 3.5rem;
-	color: #1f2937;
+	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
+	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 `;
 
 const Container = styled.div`
-	width: 43rem;
+	max-width: 55rem;
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
 	width: 100%;
@@ -126,7 +136,6 @@ const Container = styled.div`
 const BreadCrumble = styled.div`
 	display: flex;
 	align-items: center;
-	width: 60rem;
 	height: 1.25rem;
 	margin: 0 auto;
 	padding-top: 0.4rem;
@@ -167,7 +176,7 @@ const CartItemContainerWrapper = styled.div`
 const CartItemContainer = styled.div`
 	display: flex;
 	margin: 1rem auto;
-	width: 60rem;
+	max-width: 58rem;
 	height: 15.5rem;
 `;
 
@@ -177,6 +186,8 @@ const ImageContainer = styled.div`
 	align-items: center;
 	padding: 1rem;
 	width: 14rem;
+	background: #ffffff;
+	border-radius: 20px;
 
 	& > img {
 		max-width: 100%;
@@ -216,6 +227,7 @@ const ButtonWrapper = styled.div`
 
 		svg {
 			width: 5rem;
+			color: #641ae6;
 		}
 	}
 
@@ -223,9 +235,23 @@ const ButtonWrapper = styled.div`
 		margin: auto;
 	}
 `;
+const Wrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding-top: 5rem;
+
+	& > button {
+		background: #641ae6;
+		width: 5.28rem;
+		font-size: 0.9rem;
+	}
+`;
+const TotalPrice = styled.p`
+	font-size: 1.5rem;
+`;
 
 const EmptyCartWrapper = styled.div`
-	width: 60.5rem;
 	margin: 3.8rem auto;
 	& h1 {
 		font-size: 1.5rem;

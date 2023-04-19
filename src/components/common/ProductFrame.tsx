@@ -39,21 +39,20 @@ const ProductFrame = (props: ProductFrameProps) => {
 	);
 };
 
-const Container = styled.div`
+const Container = styled.ul`
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 	gap: 1.5rem;
 	margin-bottom: 4rem;
 `;
 
-const ProductContainer = styled.div`
+const ProductContainer = styled.li`
 	display: flex;
 	flex-direction: column;
 	width: 13rem;
-	border: 1px solid rgb(229 231 235);
 	border-radius: 16px;
-	background-color: #f3f4f6;
-	color: #1f2937;
+	color: inherit;
 	cursor: pointer;
 	transition: transform 0.3s ease-in-out;
 
@@ -93,7 +92,7 @@ const ProductImgContainer = styled.figure`
 const ProductDetail = styled.div`
 	display: inline-block;
 	width: auto;
-	min-height: 8.5rem;
+	height: 40%;
 	padding: 2rem;
 	border-bottom-left-radius: 16px;
 	border-bottom-right-radius: 16px;

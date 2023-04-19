@@ -15,17 +15,18 @@ interface Image {
 
 interface MainCarouselProps {
 	images: Image[];
+	isDarkMode: boolean;
 }
 
-const MainCarousel = ({ images }: MainCarouselProps) => {
+const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 	return (
 		<Wrapper>
-			<StyledCarousel autoPlay={true} showThumbs={false} showStatus={false} infiniteLoop={true}>
+			<StyledCarousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={true}>
 				{images.map((image) => (
 					<div key={image.title}>
 						<Caption>{image.caption}</Caption>
 						<Detail>{image.detail}</Detail>
-						<ButtonWrapper>
+						<ButtonWrapper isDarkMode={isDarkMode}>
 							<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
 						</ButtonWrapper>
 						<Img src={image.src} alt={image.alt} />
@@ -56,30 +57,33 @@ const StyledCarousel = styled(Carousel)`
 
 const Caption = styled.h2`
 	position: relative;
-	top: 9.2rem;
-	left: 6rem;
-	color: white;
+	top: 9rem;
+	max-width: 55rem;
+	margin: 0 auto;
+	color: #ffffff;
 	font-weight: bold;
 	font-size: 2.2rem;
 	text-align: left;
-	z-index: 2;
+	z-index: 5;
 `;
 
 const Detail = styled.p`
 	position: relative;
-	text-align: left;
 	top: 10rem;
-	left: 6rem;
+	margin: 0 auto;
+	max-width: 55rem;
 	color: white;
+	text-align: left;
 	z-index: 2;
 `;
 
-const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 	position: relative;
-	text-align: left;
 	top: 11.5rem;
-	left: 6rem;
+	margin: 0 auto;
+	max-width: 55rem;
 	color: white;
+	text-align: left;
 	z-index: 2;
 
 	& > a {
@@ -90,7 +94,7 @@ const ButtonWrapper = styled.div`
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background-color: #3d4451;
+			background: ${(props) => (props.isDarkMode ? "#191d24" : "#3d4451")};
 			color: #ffffff;
 			padding: 0 0.7rem;
 			height: 3rem;
@@ -98,7 +102,7 @@ const ButtonWrapper = styled.div`
 			opacity: 1;
 
 			&:hover {
-				background: #303640;
+				background: ${(props) => (props.isDarkMode ? "#111318" : "#303640")};
 			}
 		}
 	}

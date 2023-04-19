@@ -10,11 +10,13 @@ import { RiFacebookFill } from "react-icons/ri";
 import { FiInstagram } from "react-icons/fi";
 import { AiFillGithub } from "react-icons/ai";
 
-const Footer = () => {
+const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	let cards = [Visa, Master, Amax, Paypal, Diners, Discover];
 	return (
-		<FooterContainer>
-			<Link to="https://zero-base.co.kr/"  target="_blank">제로베이스</Link>
+		<FooterContainer isDarkMode={isDarkMode}>
+			<Link to="https://zero-base.co.kr/" target="_blank">
+				제로베이스
+			</Link>
 			<CardList>
 				{cards.map((Card, idx) => (
 					<li key={idx}>
@@ -38,14 +40,15 @@ const Footer = () => {
 	);
 };
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.footer<{ isDarkMode: boolean }>`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
 	padding: 3rem;
 	line-height: 1.25rem;
 	text-align: center;
-	background-color: rgba(229, 231, 235, .2);
+	background: ${(props) => (props.isDarkMode ? "#242933" : "#f9fafb")};
+	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 `;
 
 const CardList = styled.ul`

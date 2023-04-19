@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
 import { useEffect, useState } from "react";
 import CartData, { getCartCount } from "./components/GetItem";
+import { useDarkMode } from "usehooks-ts";
 
 export interface CartItem {
 	id: number;
@@ -25,7 +26,7 @@ export interface CartItems {
 function App() {
 	const [cartItem, setCartItem] = useState<CartItems>({ cartCount: 0, cartItem: {} });
 	const [isFirstRender, setIsFirstRender] = useState(true);
-
+	const { isDarkMode, toggle } = useDarkMode();
 	useEffect(() => {
 		if (isFirstRender) {
 			const cart = CartData();
@@ -40,17 +41,21 @@ function App() {
 			});
 		}
 	}, [cartItem]);
+
 	return (
 		<>
-			<Header cartCount={cartItem.cartCount} />
+			<Header cartCount={cartItem.cartCount} setDarkMode={toggle} isDarkMode={isDarkMode} />
 			<Routes>
-				<Route path="/" element={<Main />} />
-				<Route path={`/:category`} element={<CategoryPage />} />
-				<Route path={`/product/:productId`} element={<ProductDetailPage setCartItem={setCartItem} />} />
-				<Route path="/cart" element={<CartPage setCartItem={setCartItem} />} />
+				<Route path="/" element={<Main isDarkMode={isDarkMode} />} />
+				<Route path={`/:category`} element={<CategoryPage isDarkMode={isDarkMode} />} />
+				<Route
+					path={`/product/:productId`}
+					element={<ProductDetailPage setCartItem={setCartItem} isDarkMode={isDarkMode} />}
+				/>
+				<Route path="/cart" element={<CartPage setCartItem={setCartItem} isDarkMode={isDarkMode}/>} />
 				<Route path="/*" element={<NotFound />} />
 			</Routes>
-			<Footer />
+			<Footer isDarkMode={isDarkMode}/>
 		</>
 	);
 }
