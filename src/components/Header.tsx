@@ -119,8 +119,8 @@ const Category = styled.nav<stateProps>`
 		top: 4rem;
 		left: 0;
 		width: 6rem;
-		background: #ffffff;
-		border: 1px solid rgb(229 231 235);
+		background: ${(props) => (props.isDarkMode ? "#374151" : "#ffffff")};
+		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")}
 		border-bottom-left-radius: 10px;
 		border-bottom-right-radius: 10px;
 

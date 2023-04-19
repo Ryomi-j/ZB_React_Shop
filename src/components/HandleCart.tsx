@@ -11,7 +11,7 @@ const HandleCart = (productId: number, addOrSub: number) => {
 	if (cart[productId] === undefined) {
 		cart[productId] = { id: productId, count: 1 };
 	} else {
-		cart[productId].count += cart[productId].count + addOrSub < 0 ? 0 : addOrSub;
+		cart[productId].count = cart[productId].count + addOrSub < 0 ? 0 : cart[productId].count + addOrSub;
 	}
 
 	localStorage.setItem("CART_ITEM", JSON.stringify(cart));

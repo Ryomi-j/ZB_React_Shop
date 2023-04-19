@@ -23,19 +23,20 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	const apiData = GetData("https://fakestoreapi.com/products");
 
 	let cartItem: Array<DataProps> = [];
+	let cartItemNum: Array<number> = [];
 
 	for (let i = 0; i < cart.length; i++) {
 		apiData.map((el) => {
-			if (el.id === cart[i].id) {
+			if (el.id === cart[i].id && cart[i].count > 0) {
 				cartItem.push(el);
+				cartItemNum.push(cart[i].count);
 			}
 		});
 	}
 
 	const addOrSub = (product: DataProps, operator: string) => {
-		HandleCart(product.id, 1);
-		console.log(HandleCart(product.id, 1));
 		if (operator === "+") {
+			HandleCart(product.id, 1);
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
 				return {
@@ -51,13 +52,12 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 				};
 			});
 		} else {
-			console.log(operator);
 			HandleCart(product.id, -1);
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
 				return {
 					...prev,
-					cartCount: prev.cartCount - 1,
+					cartCount: prev.cartCount - 1 < 0 ? 0 : prev.cartCount - 1,
 					cartItem: {
 						...prev.cartItem,
 						[product.id]: {
@@ -90,10 +90,10 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 											<h2>
 												<a>{el.title}</a>
 											</h2>
-											<p>$ {el.price}</p>
+											<p>$ {el.price * cartItemNum[idx]}</p>
 											<ButtonWrapper>
 												<ButtonItem icon={AiOutlineMinusCircle} handleClick={() => addOrSub(el, "-")} />
-												<p>{cart[idx].count}</p>
+												<p>{cartItemNum[idx]}</p>
 												<ButtonItem icon={AiOutlinePlusCircle} handleClick={() => addOrSub(el, "+")} />
 											</ButtonWrapper>
 										</ProductDetailContainer>
@@ -107,11 +107,11 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 							<ButtonItem content="담으러 가기" linkPage="/" />
 						</EmptyCartWrapper>
 					)}
+				</CartItemContainerWrapper>
 					<Wrapper>
-						<TotalPrice>Total: $</TotalPrice>
+						<TotalPrice>Total: {cartItem.reduce((a, c) => a + c.price, 0)}</TotalPrice>
 						<ButtonItem content="구매하기" />
 					</Wrapper>
-				</CartItemContainerWrapper>
 			</Container>
 		</ContainerWrapper>
 	);
@@ -124,16 +124,16 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	padding-top: 3.5rem;
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
 	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
-	`;
-	
-	const Container = styled.div`
+`;
+
+const Container = styled.div`
 	max-width: 55rem;
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
 	width: 100%;
 
 	@media screen and (max-width: 920px) {
-		padding: 1.8rem 0
+		padding: 1.8rem 0;
 	}
 `;
 
@@ -172,6 +172,7 @@ const BreadCrumble = styled.div`
 const CartItemContainerWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
 	padding-top: 3.5rem;
 	width: 100%;
 	color: inherit;
@@ -197,7 +198,7 @@ const CartItemContainerWrapper = styled.div`
 				}
 
 				& h2 {
-					font-size: 1rem
+					font-size: 1rem;
 				}
 			}
 		}
@@ -271,15 +272,16 @@ const Wrapper = styled.div`
 	justify-content: space-around;
 	padding-top: 5rem;
 
+	@media screen and (max-width: 920px) {
+		flex-direction: row;
+	}
+
 	& > button {
+		justify-content: center;
 		background: #641ae6;
 		width: 5.28rem;
 		font-size: 0.9rem;
-	}
-
-	@media screen and (max-width: 920px) {
-		width: 100%;
-		height: 100%;
+		color: #ffffff;
 	}
 `;
 const TotalPrice = styled.p`
