@@ -23,6 +23,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	const apiData = GetData("https://fakestoreapi.com/products");
 
 	let cartItem: Array<DataProps> = [];
+	
 	for (let i = 0; i < cart.length; i++) {
 		apiData.map((el) => {
 			if (el.id === cart[i].id) {
@@ -30,7 +31,6 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 			}
 		});
 	}
-	console.log(cart);
 
 	const addOrSub = (product: DataProps, operator: string) => {
 		HandleCart(product.id, 1);

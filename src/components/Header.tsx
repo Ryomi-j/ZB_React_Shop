@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import ButtonItem from "./common/Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import { useMediaQuery } from "usehooks-ts";
+import Modal from "./common/Modal";
 
 interface HeaderProps {
 	cartCount: number;
@@ -24,6 +25,7 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 	const headerCategoryButtons = ["패션", "액세서리", "디지털"];
 	const categories = ["fashion", "jewelery", "electronics"];
 
+
 	return (
 		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
@@ -37,7 +39,16 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 				</Category>
 				<ButtonWrapper isDarkMode={isDarkMode}>
 					<ButtonItem icon={isDarkMode ? RiSunLine : BsMoon} handleClick={setDarkMode} />
-					<SearchBar placeholder="검색" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+					<DropDown>
+						<SearchBar
+							placeholder="검색"
+							value={searchValue}
+							onChange={(e) => {
+								setSearchValue(e.target.value);
+							}}
+						/>
+						<Modal searchValue={searchValue} setSearchValue={setSearchValue}/>
+					</DropDown>
 					<CartBtn>
 						<span>{cartCount}</span>
 						<ButtonItem linkPage="/cart" icon={BsCart3} />
@@ -49,6 +60,7 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 };
 
 const ContainerWrapper = styled.header<DarkModeProps>`
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -141,7 +153,7 @@ const ButtonWrapper = styled.div<DarkModeProps>`
 		}
 	}
 `;
-
+const DropDown = styled.div``;
 const SearchBar = styled.input`
 	display: block;
 	width: 10rem;
