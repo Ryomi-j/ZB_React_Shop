@@ -14,7 +14,7 @@ const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	return (
 		<>
 			{categoryIdx === -1 ? (
-				<NotFound />
+				<NotFound isDarkMode={isDarkMode}/>
 			) : (
 				<ContainerWrapper isDarkMode={isDarkMode}>
 					<Container>

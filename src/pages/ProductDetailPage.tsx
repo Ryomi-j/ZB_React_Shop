@@ -100,7 +100,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 						</DetailContainer>
 					</>
 				) : Number(product.id) === 0 ? (
-					<NotFound />
+					<NotFound isDarkMode={isDarkMode}/>
 				) : (
 					<LoadingBox>Loading...</LoadingBox>
 				)}

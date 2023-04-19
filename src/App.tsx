@@ -53,7 +53,7 @@ function App() {
 					element={<ProductDetailPage setCartItem={setCartItem} isDarkMode={isDarkMode} />}
 				/>
 				<Route path="/cart" element={<CartPage setCartItem={setCartItem} isDarkMode={isDarkMode}/>} />
-				<Route path="/*" element={<NotFound />} />
+				<Route path="/*" element={<NotFound isDarkMode={isDarkMode}/>} />
 			</Routes>
 			<Footer isDarkMode={isDarkMode}/>
 		</>
