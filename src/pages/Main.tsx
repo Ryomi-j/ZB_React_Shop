@@ -56,14 +56,19 @@ const Wrapper = styled.main<{ isDarkMode: boolean }>`
 const CategoryWrapper = styled.section<{ isDarkMode: boolean }>`
 	margin: 9rem auto;
 	max-width: 57rem;
+	
+	& ul {
+		flex-wrap: nowrap;
+		overflow: auto;
 
-	& ul > li {
+		& > li {
 		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
 
 		& > div {
 			background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
 			color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 		}
+	}
 	}
 `;
 
