@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import GetData from "../Api";
 import styled from "@emotion/styled";
-import { useState } from "react";
 
 interface ModalProps {
 	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
@@ -9,7 +8,6 @@ interface ModalProps {
 }
 
 const Modal = ({ searchValue, setSearchValue }: ModalProps) => {
-    const [isOpen, setIsOpen] = useState(false)
 	const data = GetData("https://fakestoreapi.com/products");
 	const value = searchValue.toLowerCase();
 	const filteredData = data.filter((el) => el.title.toLowerCase().includes(value));
@@ -37,7 +35,7 @@ const Container = styled.ul<{ searchValue: string }>`
 	padding: 0.5rem;
 	width: 12rem;
 	height: 20rem;
-	background: #4b5563;
+	background: #ffffff;
 	overflow: auto;
 	box-sizing: content-box;
 	border-radius: 10px;
@@ -46,13 +44,13 @@ const Container = styled.ul<{ searchValue: string }>`
 const Item = styled.li`
 	text-overflow: ellipsis;
 	padding: 0.2rem;
-	&:hover {
-		background: #1f293733;
-	}
 
 	& a {
-		display: inline-block;
 		width: 100%;
+		display: inline-block;
+		text-decoration: none;
+		color: inherit;
+
 		&:hover {
 			text-decoration: none;
 		}

@@ -7,6 +7,7 @@ import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import Modal from "./common/Modal";
 
+
 interface HeaderProps {
 	cartCount: number;
 	setDarkMode: () => void;
@@ -190,7 +191,6 @@ const ButtonWrapper = styled.div<stateProps>`
 
 	& a {
 		display: flex;
-		width: 4rem;
 		height: 3rem;
 
 		&:hover {
