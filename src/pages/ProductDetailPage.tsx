@@ -119,7 +119,7 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 `;
 
 const Container = styled.div`
-	width: 56rem;
+	max-width: 56rem;
 	margin: 0 auto;
 	padding: 1.2rem 2rem 2rem;
 `;

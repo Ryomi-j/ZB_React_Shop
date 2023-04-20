@@ -205,7 +205,6 @@ const CartItemContainerWrapper = styled.div`
 
 const CartItemContainer = styled.div`
 	display: flex;
-	margin: 1rem auto;
 	padding: 1rem 4.5rem;
 	max-width: 58rem;
 `;
