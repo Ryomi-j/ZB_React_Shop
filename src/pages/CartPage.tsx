@@ -7,6 +7,7 @@ import { DataProps } from "./ProductDetailPage";
 import HandleCart from "../components/HandleCart";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 interface CartPageProps {
 	isDarkMode: boolean;
@@ -48,7 +49,6 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 			});
 		} else {
 			HandleCart(product.id, -1);
-			console.log(-product.price)
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
 				return {
@@ -84,7 +84,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 										</ImageContainer>
 										<ProductDetailContainer>
 											<h2>
-												<a>{el.title}</a>
+												<Link to={`/product/${el.id}`}>{el.title} </Link>
 											</h2>
 											<p>$ {el.price * cartItemNum[idx]}</p>
 											<ButtonWrapper>
@@ -105,7 +105,9 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 					)}
 				</CartItemContainerWrapper>
 				<Wrapper>
-					<TotalPrice>Total: $ {(cartItem.reduce((a, c, idx) => a + (c.price)*cartItemNum[idx], 0)).toFixed(2) }</TotalPrice>
+					<TotalPrice>
+						Total: $ {cartItem.reduce((a, c, idx) => a + c.price * cartItemNum[idx], 0).toFixed(2)}
+					</TotalPrice>
 					<ButtonItem content="구매하기" />
 				</Wrapper>
 			</Container>
@@ -218,8 +220,9 @@ const ImageContainer = styled.figure`
 	border-radius: 20px;
 
 	& > img {
-		max-width: 50%;
-		max-height: 50%;
+		max-width: 70%;
+		min-width: 50%;
+		min-height: 50%;
 	}
 `;
 
@@ -227,8 +230,9 @@ const ProductDetailContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 2rem 3rem;
+	max-width: max-content;
 
-	& h2 {
+	& h2 > a {
 		font-size: 1.3rem;
 		font-weight: bold;
 		line-height: 2rem;
@@ -243,7 +247,6 @@ const ProductDetailContainer = styled.div`
 const ButtonWrapper = styled.div`
 	display: flex;
 	padding-top: 2rem;
-	padding-left: 14rem;
 	width: 10rem;
 	text-align: center;
 
