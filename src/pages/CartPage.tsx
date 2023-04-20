@@ -8,11 +8,6 @@ import HandleCart from "../components/HandleCart";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-interface CartItem {
-	id: number;
-	count: number;
-}
-
 interface CartPageProps {
 	isDarkMode: boolean;
 	setCartItem: React.Dispatch<React.SetStateAction<CartItems>>;
@@ -109,7 +104,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 					)}
 				</CartItemContainerWrapper>
 					<Wrapper>
-						<TotalPrice>Total: {cartItem.reduce((a, c) => a + c.price, 0)}</TotalPrice>
+						<TotalPrice>Total: $ {(cartItem.reduce((a, c, idx) => a + (c.price)*cartItemNum[idx], 0)).toFixed(2) }</TotalPrice>
 						<ButtonItem content="구매하기" />
 					</Wrapper>
 			</Container>
