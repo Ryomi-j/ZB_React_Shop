@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import ButtonItem from "./common/Button";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { RiSunLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
@@ -120,7 +120,7 @@ const Category = styled.nav<stateProps>`
 		left: 0;
 		width: 6rem;
 		background: ${(props) => (props.isDarkMode ? "#374151" : "#ffffff")};
-		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")}
+		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
 		border-bottom-left-radius: 10px;
 		border-bottom-right-radius: 10px;
 
