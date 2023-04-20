@@ -89,7 +89,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 								<h2>{product.title}</h2>
 								<p>{product.description}</p>
 								<Rate>
-									{product.rating.rate} / 5점  - {product.rating.count}명 참여
+									{product.rating.rate} / 5점 - {product.rating.count}명 참여
 								</Rate>
 								<Price>{`$${product.price}`}</Price>
 								<ButtonWrapper>
@@ -100,7 +100,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 						</DetailContainer>
 					</>
 				) : Number(product.id) === 0 ? (
-					<NotFound isDarkMode={isDarkMode}/>
+					<NotFound isDarkMode={isDarkMode} />
 				) : (
 					<LoadingBox>Loading...</LoadingBox>
 				)}
@@ -111,7 +111,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 
 const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
-	height: 45.7rem;
+	min-height: 46rem;
 	margin: 0 auto;
 	padding-top: 4rem;
 	background-color: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
@@ -119,7 +119,7 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 `;
 
 const Container = styled.div`
-	max-width: 56rem;
+	max-width: 58rem;
 	margin: 0 auto;
 	padding: 1.2rem 2rem 2rem;
 `;
@@ -127,7 +127,7 @@ const Container = styled.div`
 const BreadCrumble = styled.div`
 	display: flex;
 	align-items: center;
-	width: 50rem;
+	max-width: 50rem;
 	height: 1.25rem;
 	margin: 0 auto;
 	padding-top: 0.5rem;
@@ -160,24 +160,43 @@ const Arrow = styled.span`
 const DetailContainer = styled.div`
 	display: flex;
 	margin-top: 3.5rem;
-	width: 56rem;
-	height: 23rem;
+	max-width: 58rem;
+	min-height: 23rem;
 	color: inherit;
 	letter-spacing: 0.02rem;
+
+	@media screen and (max-width: 920px) {
+		flex-direction: column;
+		min-height: 50rem;
+
+		& figure {
+				padding: 2rem auto;
+				height: 15rem;
+				max-width: 30rem;
+
+				& img{
+					min-width: 30%;
+					min-height: 30%;
+				}
+			}
+
+			& div {
+				padding: 2rem 0 0 0;
+			}
+	}
 `;
 
 const ImageContainer = styled.figure`
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	padding: 1rem;
+	min-width: 14rem;
 	background: #ffffff;
 	border-radius: 20px;
 
 	& img {
-		object-fit: contain;
-		height: 18rem;
-		width: 18rem;
+		width: 10rem;
 	}
 `;
 
@@ -185,8 +204,8 @@ const Details = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	padding: 2rem 3rem;
-	width: 35.5rem;
+	padding: 0 3rem;
+	max-width: 35.5rem;
 
 	& h2 {
 		font-size: 1.25rem;
