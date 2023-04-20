@@ -106,7 +106,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 				</CartItemContainerWrapper>
 				<Wrapper>
 					<TotalPrice>
-						Total: $ {cartItem.reduce((a, c, idx) => a + c.price * cartItemNum[idx], 0).toFixed(2)}
+						<strong>Total:</strong> $ {cartItem.reduce((a, c, idx) => a + c.price * cartItemNum[idx], 0).toFixed(2)}
 					</TotalPrice>
 					<ButtonItem content="구매하기" />
 				</Wrapper>
@@ -287,6 +287,11 @@ const Wrapper = styled.div`
 `;
 const TotalPrice = styled.p`
 	font-size: 1.5rem;
+
+	& strong {
+		font-weight: bold;
+		padding-right: 1rem;
+	}
 `;
 
 const EmptyCartWrapper = styled.div`
