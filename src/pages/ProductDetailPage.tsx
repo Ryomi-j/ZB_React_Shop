@@ -89,7 +89,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 								<h2>{product.title}</h2>
 								<p>{product.description}</p>
 								<Rate>
-									{product.rating.rate} / {product.rating.count} 참여
+									{product.rating.rate} / 5점  - {product.rating.count}명 참여
 								</Rate>
 								<Price>{`$${product.price}`}</Price>
 								<ButtonWrapper>
