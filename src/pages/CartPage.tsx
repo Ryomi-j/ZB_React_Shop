@@ -8,11 +8,6 @@ import HandleCart from "../components/HandleCart";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-interface CartItem {
-	id: number;
-	count: number;
-}
-
 interface CartPageProps {
 	isDarkMode: boolean;
 	setCartItem: React.Dispatch<React.SetStateAction<CartItems>>;
@@ -53,6 +48,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 			});
 		} else {
 			HandleCart(product.id, -1);
+			console.log(-product.price)
 			setCartItem((prev) => {
 				const count = prev.cartItem[product.id]?.count ?? 0;
 				return {
@@ -108,10 +104,10 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 						</EmptyCartWrapper>
 					)}
 				</CartItemContainerWrapper>
-					<Wrapper>
-						<TotalPrice>Total: {cartItem.reduce((a, c) => a + c.price, 0)}</TotalPrice>
-						<ButtonItem content="구매하기" />
-					</Wrapper>
+				<Wrapper>
+					<TotalPrice>Total: $ {(cartItem.reduce((a, c, idx) => a + (c.price)*cartItemNum[idx], 0)).toFixed(2) }</TotalPrice>
+					<ButtonItem content="구매하기" />
+				</Wrapper>
 			</Container>
 		</ContainerWrapper>
 	);
@@ -208,6 +204,7 @@ const CartItemContainerWrapper = styled.div`
 const CartItemContainer = styled.div`
 	display: flex;
 	margin: 1rem auto;
+	padding: 1rem 4.5rem;
 	max-width: 58rem;
 `;
 
@@ -221,8 +218,8 @@ const ImageContainer = styled.figure`
 	border-radius: 20px;
 
 	& > img {
-		max-width: 100%;
-		max-height: 100%;
+		max-width: 50%;
+		max-height: 50%;
 	}
 `;
 
@@ -271,6 +268,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	padding-top: 5rem;
+	margin-bottom: 2rem;
 
 	@media screen and (max-width: 920px) {
 		flex-direction: row;
