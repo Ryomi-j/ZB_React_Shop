@@ -169,19 +169,21 @@ const DetailContainer = styled.div`
 		min-height: 50rem;
 
 		& figure {
-				padding: 2rem auto;
-				height: 15rem;
-				max-width: 30rem;
+			margin: 0 auto;
+			padding: 2rem auto;
+			height: 15rem;
+			max-width: 30rem;
 
-				& img{
-					min-width: 30%;
-					min-height: 30%;
-				}
+			& img {
+				max-width: 70%;
+				max-height: 70%;
 			}
+		}
 
-			& div {
-				padding: 2rem 0 0 0;
-			}
+		& div {
+			margin: 0 auto;
+			padding: 2rem 0 0 0;
+		}
 	}
 `;
 
