@@ -81,6 +81,7 @@ const ProductContainer = styled.li`
 
 		& > div {
 			padding: 0.5rem;
+			text-align: center;
 		}
 	}
 `;
