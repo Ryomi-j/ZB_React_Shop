@@ -18,7 +18,7 @@ export const BreadCrumbleItem = ({ firstCategory, secondCategory }: BreadCrumble
 const BreadCrumble = styled.ul`
 	display: flex;
 	align-items: center;
-	width: 60rem;
+	max-width: 100%;
 	height: 1.25rem;
 	margin: 0 auto;
 	padding-top: 0.5rem;
