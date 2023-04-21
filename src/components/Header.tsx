@@ -212,6 +212,7 @@ const ButtonWrapper = styled.div<stateProps>`
 		}
 	}
 `;
+
 const SearchBar = styled.input`
 	display: block;
 	width: 10rem;
@@ -222,6 +223,10 @@ const SearchBar = styled.input`
 	border: none;
 	border-radius: 0.5rem;
 	background-color: rgba(31, 41, 55, 0.3);
+
+	@media screen and (max-width: 750px) {
+		max-width: 5rem;
+	}
 `;
 
 const CartBtn = styled.div`

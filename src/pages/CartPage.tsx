@@ -185,7 +185,7 @@ const CartItemContainerWrapper = styled.div`
 
 const CartItemContainer = styled.div`
 	display: flex;
-	padding: 1rem 4.5rem;
+	/* padding: 1rem 4.5rem; */
 	max-width: 58rem;
 	width: auto;
 `;
@@ -209,8 +209,7 @@ const ImageContainer = styled.figure`
 const ProductDetailContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 2rem 3rem;
-	max-width: max-content;
+	padding: 2rem;
 
 	& h2 > a {
 		font-size: 1.3rem;
