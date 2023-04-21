@@ -127,7 +127,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 
 const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
-	min-height: calc(100vh - 22rem);
+	min-height: calc(100vh - 21.4rem);
 	margin: 0 auto;
 	padding-top: 3.5rem;
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
@@ -142,38 +142,6 @@ const Container = styled.div`
 
 	@media screen and (max-width: 920px) {
 		padding: 1.8rem 0;
-	}
-`;
-
-const BreadCrumble = styled.div`
-	display: flex;
-	align-items: center;
-	height: 1.25rem;
-	margin: 0 auto;
-	padding-top: 0.4rem;
-	padding-bottom: 0.5rem;
-	gap: 1.2rem;
-	line-height: 1.25rem;
-	font-size: 0.9rem;
-
-	& p {
-		line-height: 1.25rem;
-		padding-top: 0.5rem;
-
-		&::after {
-			content: "";
-			display: block;
-			position: relative;
-			top: -0.6rem;
-			left: 1.2rem;
-			margin-left: 0.5rem;
-			margin-right: 0.5rem;
-			height: 0.4rem;
-			width: 0.4rem;
-			border-top: 1px solid;
-			border-right: 1px solid;
-			transform: translate(-50%, -50%) rotate(45deg);
-		}
 	}
 `;
 
@@ -292,6 +260,10 @@ const Wrapper = styled.div`
 		width: 5.28rem;
 		font-size: 0.9rem;
 		color: #ffffff;
+
+		&:hover {
+			background: #4506cb;
+		}
 	}
 `;
 const TotalPrice = styled.p`
