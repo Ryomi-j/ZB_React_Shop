@@ -42,6 +42,7 @@ const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 const Wrapper = styled.section`
 	padding-top: 4rem;
 	max-height: calc(100vh - 4rem);
+	overflow: hidden;
 `;
 
 const StyledCarousel = styled(Carousel)`

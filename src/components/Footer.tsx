@@ -45,6 +45,10 @@ const FooterContainer = styled.footer<{ isDarkMode: boolean }>`
 	flex-direction: column;
 	row-gap: 2rem;
 	padding: 3rem;
+	position: relative;
+	bottom: 0;
+	left: 0;
+	width: 100%;
 	line-height: 1.25rem;
 	text-align: center;
 	background: ${(props) => (props.isDarkMode ? "#242933" : "#f9fafb")};
@@ -62,6 +66,10 @@ const SNSContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	column-gap: 1rem;
+
+	& a {
+		color: inherit;
+	}
 `;
 
 export default Footer;

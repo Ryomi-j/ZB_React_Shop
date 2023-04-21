@@ -57,6 +57,7 @@ const Container = styled.div`
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
 	max-width: 57rem;
+	min-height: 48.9rem;
 `;
 
 const BreadCrumble = styled.ul`

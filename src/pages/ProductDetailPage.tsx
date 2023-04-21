@@ -111,7 +111,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 
 const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
-	min-height: 46rem;
+	min-height: 45.2rem;
 	margin: 0 auto;
 	padding-top: 4rem;
 	background-color: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
@@ -120,24 +120,23 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 
 const Container = styled.div`
 	max-width: 58rem;
+	min-height: 51rem;
 	margin: 0 auto;
 	padding: 1.2rem 2rem 2rem;
 `;
 
-const BreadCrumble = styled.div`
+const BreadCrumble = styled.ul`
 	display: flex;
 	align-items: center;
-	max-width: 50rem;
+	width: 60rem;
 	height: 1.25rem;
 	margin: 0 auto;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	gap: 1.2rem;
 	line-height: 1.25rem;
 	font-size: 0.9rem;
-
-	& p {
-		line-height: 1.25rem;
-	}
+	line-height: 1.25rem;
 `;
 
 const Arrow = styled.span`
