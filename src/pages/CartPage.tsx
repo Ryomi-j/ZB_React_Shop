@@ -171,10 +171,6 @@ const CartItemContainerWrapper = styled.div`
 				padding: 0.5rem;
 				text-align: center;
 
-				& div {
-					padding-left: 13rem;
-				}
-
 				& h2 {
 					font-size: 1rem;
 				}
@@ -185,7 +181,6 @@ const CartItemContainerWrapper = styled.div`
 
 const CartItemContainer = styled.div`
 	display: flex;
-	/* padding: 1rem 4.5rem; */
 	max-width: 58rem;
 	width: auto;
 `;
@@ -225,6 +220,7 @@ const ProductDetailContainer = styled.div`
 
 const ButtonWrapper = styled.div`
 	display: flex;
+	margin: 0 auto;
 	padding-top: 2rem;
 	width: 10rem;
 	text-align: center;
