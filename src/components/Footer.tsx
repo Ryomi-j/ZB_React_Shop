@@ -45,9 +45,7 @@ const FooterContainer = styled.footer<{ isDarkMode: boolean }>`
 	flex-direction: column;
 	row-gap: 2rem;
 	padding: 3rem;
-	position: relative;
-	bottom: 0;
-	left: 0;
+	margin-top: auto;
 	width: 100%;
 	line-height: 1.25rem;
 	text-align: center;

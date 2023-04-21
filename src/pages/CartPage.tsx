@@ -128,7 +128,7 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 
 const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 	width: 100%;
-	min-height: 46rem;
+	min-height: calc(100vh - 22rem);
 	margin: 0 auto;
 	padding-top: 3.5rem;
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};

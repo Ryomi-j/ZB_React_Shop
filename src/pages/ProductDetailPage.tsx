@@ -109,9 +109,9 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 	);
 };
 
-const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
+const ContainerWrapper = styled.main<{ isDarkMode: boolean }>`
 	width: 100%;
-	min-height: 45.2rem;
+	min-height: calc(100vh - 22.5rem);
 	margin: 0 auto;
 	padding-top: 4rem;
 	background-color: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};

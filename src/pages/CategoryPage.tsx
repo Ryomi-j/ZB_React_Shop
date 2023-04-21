@@ -33,8 +33,9 @@ const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	);
 };
 
-const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
+const ContainerWrapper = styled.main<{ isDarkMode: boolean }>`
 	width: 100%;
+	min-height: calc(100vh - 22.5rem);
 	margin: 0 auto;
 	padding-top: 4rem;
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
@@ -56,7 +57,6 @@ const Container = styled.div`
 	margin: 0 auto;
 	padding: 1.8rem 2rem;
 	max-width: 57rem;
-	min-height: 48.9rem;
 `;
 
 const BreadCrumble = styled.ul`

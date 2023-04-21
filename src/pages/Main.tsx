@@ -48,13 +48,14 @@ const Main = ({ isDarkMode }: { isDarkMode: boolean }) => {
 const Wrapper = styled.main<{ isDarkMode: boolean }>`
 	position: relative;
 	width: 100%;
-	min-height: 170rem;
+	min-height: calc(100vh - 11.5px);
 	background: ${(props) => (props.isDarkMode ? "#272d37" : "#ffffff")};
 	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 `;
 
 const CategoryWrapper = styled.section<{ isDarkMode: boolean }>`
-	margin: 9rem auto;
+	margin: 0 auto;
+	padding: 9rem 0;
 	max-width: 57rem;
 
 	& ul {
@@ -66,8 +67,6 @@ const CategoryWrapper = styled.section<{ isDarkMode: boolean }>`
 				color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 			}
 		}
-
-		
 	}
 `;
 

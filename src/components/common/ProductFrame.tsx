@@ -47,11 +47,8 @@ const Container = styled.ul`
 	margin: 0 auto 4rem;
 
 	@media screen and (max-width: 1380px) {
-		/* flex-wrap: nowrap; */
-		overflow: auto;
 		justify-content: center;
 	}
-
 `;
 
 const ProductContainer = styled.li`
@@ -79,10 +76,8 @@ const ProductContainer = styled.li`
 		}
 	}
 
-
 	@media screen and (max-width: 1380px) {
 		width: 21rem;
-		height: 20rem;
 
 		& > div {
 			padding: 0.5rem;
