@@ -125,10 +125,9 @@ const Category = styled.nav<stateProps>`
 	@media screen and (max-width: 940px) {
 		display: ${(props) => (props.modalState ? "flex" : "none")};
 		align-items: center;
-		position: absolute;
+		position: fixed;
 		flex-direction: column;
 		top: 4rem;
-		left: 0;
 		width: 6rem;
 		background: ${(props) => (props.isDarkMode ? "#374151" : "#ffffff")};
 		border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
