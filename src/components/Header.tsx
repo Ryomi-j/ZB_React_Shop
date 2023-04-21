@@ -7,7 +7,6 @@ import { BsCart3 } from "react-icons/bs";
 import { BsMoon } from "react-icons/bs";
 import Modal from "./common/Modal";
 
-
 interface HeaderProps {
 	cartCount: number;
 	setDarkMode: () => void;
@@ -33,20 +32,28 @@ const Header = ({ cartCount, isDarkMode, setDarkMode }: HeaderProps) => {
 	return (
 		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
-				<CategoryDropdown onClick={handleClick}>
-					<div></div>
-					<div></div>
-					<div></div>
-				</CategoryDropdown>
-
-				<Title isDarkMode={isDarkMode}>
-					<Link to="/">React Shop</Link>
-				</Title>
-				<Category isDarkMode={isDarkMode} modalState={modalState}>
-					{headerCategoryButtons.map((el, idx) => {
-						return <ButtonItem key={el} linkPage={`/${categories[idx]}`} content={el}  handleClick={() => setModalState(!modalState)}/>;
-					})}
-				</Category>
+				<CategoryWrapper>
+					<CategoryDropdown onClick={handleClick}>
+						<div></div>
+						<div></div>
+						<div></div>
+					</CategoryDropdown>
+					<Title isDarkMode={isDarkMode}>
+						<Link to="/">React Shop</Link>
+					</Title>
+					<Category isDarkMode={isDarkMode} modalState={modalState}>
+						{headerCategoryButtons.map((el, idx) => {
+							return (
+								<ButtonItem
+									key={el}
+									linkPage={`/${categories[idx]}`}
+									content={el}
+									handleClick={() => setModalState(!modalState)}
+								/>
+							);
+						})}
+					</Category>
+				</CategoryWrapper>
 				<ButtonWrapper isDarkMode={isDarkMode}>
 					<ButtonItem icon={isDarkMode ? RiSunLine : BsMoon} handleClick={setDarkMode} />
 					<div>
@@ -73,11 +80,9 @@ const ContainerWrapper = styled.header<stateProps>`
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	position: fixed;
 	z-index: 999;
 	width: 100%;
-	height: 3rem;
 	min-height: 3rem;
 	margin: auto;
 	padding: 0.5rem;
@@ -87,9 +92,14 @@ const ContainerWrapper = styled.header<stateProps>`
 
 const Container = styled.div`
 	display: flex;
-	max-width: 55rem;
+	width: 100%;
 	justify-content: space-around;
+`;
+
+const CategoryWrapper = styled.div`
+	display: flex;
 	align-items: center;
+	gap: 1rem;
 `;
 
 const Title = styled.h1<stateProps>`
@@ -113,7 +123,7 @@ const Category = styled.nav<stateProps>`
 	margin-left: 0.5rem;
 
 	@media screen and (max-width: 940px) {
-		display:  ${(props) => (props.modalState ? "flex" : "none")};
+		display: ${(props) => (props.modalState ? "flex" : "none")};
 		align-items: center;
 		position: absolute;
 		flex-direction: column;
@@ -218,6 +228,7 @@ const SearchBar = styled.input`
 const CartBtn = styled.div`
 	position: relative;
 	color: #e5e7eb;
+	width: 3.5rem;
 
 	&::before {
 		content: "";
