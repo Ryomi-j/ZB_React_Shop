@@ -44,8 +44,8 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 		
 		& > li {
 			border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
+			background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
 			 div {
-				background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
 				color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 			}
 		}
