@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import GetData from "../Api";
 import { useNavigate } from "react-router-dom";
+import { Loading } from "./Loading";
 
 interface ProductFrameProps {
 	category: string;
@@ -33,7 +34,7 @@ const ProductFrame = (props: ProductFrameProps) => {
 					</ProductContainer>
 				))
 			) : (
-				<p>Loading...</p>
+				<Loading />
 			)}
 		</Container>
 	);

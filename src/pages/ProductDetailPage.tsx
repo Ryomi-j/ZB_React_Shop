@@ -7,6 +7,7 @@ import HandleCart from "../components/HandleCart";
 import { CartItems } from "../App";
 import NotFound from "./NotFound";
 import { BreadCrumbleItem } from "../components/common/BreadCrumble";
+import { Loading } from "../components/common/Loading";
 
 export interface DataProps {
 	id: number;
@@ -99,7 +100,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 				) : Number(product.id) === 0 ? (
 					<NotFound isDarkMode={isDarkMode} />
 				) : (
-					<LoadingBox>Loading...</LoadingBox>
+					<Loading />
 				)}
 			</Container>
 		</ContainerWrapper>
@@ -224,13 +225,5 @@ const ButtonWrapper = styled.div`
 			}
 		}
 	}
-`;
-
-const LoadingBox = styled.div`
-	padding-top: 15rem;
-	width: 56rem;
-	height: 20rem;
-	text-align: center;
-	font-size: 3rem;
 `;
 export default ProductDetailPage;
