@@ -14,7 +14,7 @@ const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	return (
 		<>
 			{categoryIdx === -1 ? (
-				<NotFound isDarkMode={isDarkMode}/>
+				<NotFound isDarkMode={isDarkMode} />
 			) : (
 				<ContainerWrapper isDarkMode={isDarkMode}>
 					<Container>
@@ -23,7 +23,7 @@ const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 							<span>{categoryTitle[categoryIdx]}</span>
 						</BreadCrumble>
 						<Category>{categoryTitle[categoryIdx]}</Category>
-						<ProductWrapper>
+						<ProductWrapper isDarkMode={isDarkMode}>
 							<ProductFrame category={categories[categoryIdx]} />
 						</ProductWrapper>
 					</Container>
@@ -42,11 +42,10 @@ const ContainerWrapper = styled.main<{ isDarkMode: boolean }>`
 	color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 
 	& div div ul {
-		
 		& > li {
 			border: ${(props) => (props.isDarkMode ? "none" : "1px solid rgb(229 231 235)")};
 			background: ${(props) => (props.isDarkMode ? "#374151" : "#f3f4f6")};
-			 div {
+			div {
 				color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 			}
 		}
@@ -62,7 +61,7 @@ const Container = styled.div`
 const BreadCrumble = styled.ul`
 	display: flex;
 	align-items: center;
-	width: 60rem;
+	max-width: 60rem;
 	height: 1.25rem;
 	margin: 0 auto;
 	padding-top: 0.5rem;
@@ -101,15 +100,14 @@ const Category = styled.h2`
 	text-align: center;
 `;
 
-const ProductWrapper = styled.div`<{ isDarkMode: boolean }>
-	width: 60rem;
+const ProductWrapper = styled.div<{ isDarkMode: boolean }>`
+	max-width: 60rem;
 	margin: 0 auto;
 
 	& > ul li div {
 		justify-content: flex-start;
 		flex-direction: row;
 		flex-wrap: wrap;
-
 	}
 `;
 
