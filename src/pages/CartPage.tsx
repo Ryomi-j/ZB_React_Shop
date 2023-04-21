@@ -9,6 +9,7 @@ import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { BreadCrumbleItem } from "../components/common/BreadCrumble";
 
 interface CartPageProps {
 	isDarkMode: boolean;
@@ -71,10 +72,8 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	return (
 		<ContainerWrapper isDarkMode={isDarkMode}>
 			<Container>
-				<BreadCrumble>
-					<p>홈</p>
-					<span>장바구니</span>
-				</BreadCrumble>
+				<BreadCrumbleItem firstCategory="홈" secondCategory="장바구니" />
+
 				<CartItemContainerWrapper>
 					{cartItem.length > 0 ? (
 						<>

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import HandleCart from "../components/HandleCart";
 import { CartItems } from "../App";
 import NotFound from "./NotFound";
+import { BreadCrumbleItem } from "../components/common/BreadCrumble";
 
 export interface DataProps {
 	id: number;
@@ -76,11 +77,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 			<Container>
 				{Number(product.id) > 0 ? (
 					<>
-						<BreadCrumble>
-							<p>{categoryTitle[categoryIdx]}</p>
-							<Arrow></Arrow>
-							<span>{product.title}</span>
-						</BreadCrumble>
+						<BreadCrumbleItem firstCategory={categoryTitle[categoryIdx]} secondCategory={product.title} />
 						<DetailContainer>
 							<ImageContainer>
 								<img src={product.image} alt={`${product.category} image`} />
@@ -123,37 +120,6 @@ const Container = styled.div`
 	min-height: 51rem;
 	margin: 0 auto;
 	padding: 1.2rem 2rem 2rem;
-`;
-
-const BreadCrumble = styled.ul`
-	display: flex;
-	align-items: center;
-	width: 60rem;
-	height: 1.25rem;
-	margin: 0 auto;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	gap: 1.2rem;
-	line-height: 1.25rem;
-	font-size: 0.9rem;
-	line-height: 1.25rem;
-`;
-
-const Arrow = styled.span`
-	&::after {
-		content: "";
-		display: block;
-		position: relative;
-		top: 0.25rem;
-		left: 0rem;
-		margin-left: 0.5rem;
-		margin-right: 0.5rem;
-		height: 0.4rem;
-		width: 0.4rem;
-		border-top: 1px solid;
-		border-right: 1px solid;
-		transform: translate(-50%, -50%) rotate(45deg);
-	}
 `;
 
 const DetailContainer = styled.div`

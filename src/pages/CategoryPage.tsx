@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import ProductFrame from "../components/common/ProductFrame";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
+import { BreadCrumbleItem } from "../components/common/BreadCrumble";
 
 const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 	const { category } = useParams();
@@ -18,10 +19,7 @@ const CategoryPage = ({ isDarkMode }: { isDarkMode: boolean }) => {
 			) : (
 				<ContainerWrapper isDarkMode={isDarkMode}>
 					<Container>
-						<BreadCrumble>
-							<p>홈</p>
-							<span>{categoryTitle[categoryIdx]}</span>
-						</BreadCrumble>
+						<BreadCrumbleItem firstCategory="홈" secondCategory={categoryTitle[categoryIdx]} />
 						<Category>{categoryTitle[categoryIdx]}</Category>
 						<ProductWrapper isDarkMode={isDarkMode}>
 							<ProductFrame category={categories[categoryIdx]} />
