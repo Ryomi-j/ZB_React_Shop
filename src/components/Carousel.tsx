@@ -24,13 +24,13 @@ const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 			<StyledCarousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={true}>
 				{images.map((image) => (
 					<div key={image.title}>
-						<Content>
+						<Caption>
 							<h2>{image.caption}</h2>
 							<p>{image.detail}</p>
 							<ButtonWrapper isDarkMode={isDarkMode}>
 								<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
 							</ButtonWrapper>
-						</Content>
+						</Caption>
 						<Img src={image.src} alt={image.alt} />
 					</div>
 				))}
@@ -56,7 +56,7 @@ const StyledCarousel = styled(Carousel)`
 	}
 `;
 
-const Content = styled.div`
+const Caption = styled.div`
 	position: absolute;
 	top: 30%;
 	left: 10%;
@@ -122,6 +122,7 @@ const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 
 const Img = styled.img`
 	max-height: 750px;
+	object-fit: cover;
 `;
 
 export default MainCarousel;
