@@ -48,13 +48,13 @@ function App() {
 			<Header cartCount={cartItem.cartCount} setDarkMode={toggle} isDarkMode={isDarkMode} />
 			<Routes>
 				<Route path="/" element={<Main isDarkMode={isDarkMode} />} />
-				<Route path={`/:category`} element={<CategoryPage isDarkMode={isDarkMode} />} />
+				<Route path={`:category`} element={<CategoryPage isDarkMode={isDarkMode} />} />
 				<Route
-					path={`/product/:productId`}
+					path={`product/:productId`}
 					element={<ProductDetailPage setCartItem={setCartItem} isDarkMode={isDarkMode} />}
 				/>
-				<Route path="/cart" element={<CartPage setCartItem={setCartItem} isDarkMode={isDarkMode}/>} />
-				<Route path="/*" element={<NotFound isDarkMode={isDarkMode}/>} />
+				<Route path="cart" element={<CartPage setCartItem={setCartItem} isDarkMode={isDarkMode}/>} />
+				<Route path="*" element={<NotFound isDarkMode={isDarkMode}/>} />
 			</Routes>
 			<Footer isDarkMode={isDarkMode}/>
 		</>

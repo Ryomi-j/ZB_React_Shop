@@ -24,11 +24,13 @@ const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 			<StyledCarousel autoPlay={false} showThumbs={false} showStatus={false} infiniteLoop={true}>
 				{images.map((image) => (
 					<div key={image.title}>
-						<Caption>{image.caption}</Caption>
-						<Detail>{image.detail}</Detail>
-						<ButtonWrapper isDarkMode={isDarkMode}>
-							<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
-						</ButtonWrapper>
+						<Content>
+							<h2>{image.caption}</h2>
+							<p>{image.detail}</p>
+							<ButtonWrapper isDarkMode={isDarkMode}>
+								<ButtonItem content="바로가기" linkPage={image.linkPage} icon={BsArrowRightShort} />
+							</ButtonWrapper>
+						</Content>
 						<Img src={image.src} alt={image.alt} />
 					</div>
 				))}
@@ -38,28 +40,15 @@ const MainCarousel = ({ images, isDarkMode }: MainCarouselProps) => {
 };
 
 const Wrapper = styled.section`
-	position: relative;
-	top: 3.2rem;
-	height: 720px;
-	overflow: hidden;
-
-	@media screen and (max-width: 1300px) {
-		height: 470px;
-	}
-
-	@media screen and (max-width: 970px) {
-		height: 350px;
-	}
-
-	@media screen and (max-width: 760px) {
-		height: 250px;
-	}
+	padding-top: 4rem;
+	max-height: calc(100vh - 4rem);
 `;
 
 const StyledCarousel = styled(Carousel)`
-	height: 100%;
+	position: relative;
+
 	& > div {
-		height: 100%;
+		top: 30%;
 
 		& .control-arrow {
 			border-radius: 0rem;
@@ -67,84 +56,34 @@ const StyledCarousel = styled(Carousel)`
 	}
 `;
 
-const Caption = styled.h2`
-	position: relative;
-	top: 9rem;
-	max-width: 55rem;
-	margin: 0 auto;
+const Content = styled.div`
+	position: absolute;
+	top: 30%;
+	left: 10%;
 	color: #ffffff;
-	font-weight: bold;
-	font-size: 2.2rem;
-	text-align: left;
-	z-index: 5;
+	font-size: 1.2rem;
 
-	@media screen and (max-width: 1300px) {
-		top: 5rem;
-		left: 4rem;
-		font-size: 1.5rem;
-	}
-
-	@media screen and (max-width: 970px) {
-		top: 4rem;
-		font-size: 1.2rem;
+	& h2 {
+		margin: 1rem auto;
+		font-weight: bold;
+		font-size: 2.2rem;
+		text-align: left;
 	}
 
 	@media screen and (max-width: 760px) {
-		top: 3rem;
-		left: 3rem;
-		font-size: 1rem;
-	}
-`;
+		& h2 {
+			font-size: 1.5rem;
+		}
 
-const Detail = styled.p`
-	position: relative;
-	top: 10rem;
-	margin: 0 auto;
-	max-width: 55rem;
-	color: white;
-	text-align: left;
-	z-index: 2;
-
-	@media screen and (max-width: 1300px) {
-		top: 6rem;
-		left: 4rem;
-		font-size: 1rem;
-	}
-
-	@media screen and (max-width: 970px) {
-		top: 5rem;
-		font-size: 0.8rem;
-	}
-
-	@media screen and (max-width: 760px) {
-		top: 4rem;
-		left: 3rem;
-		font-size: .8rem;
+		& p {
+			font-size: 0.8rem;
+		}
 	}
 `;
 
 const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
-	position: relative;
-	top: 11.5rem;
-	margin: 0 auto;
-	max-width: 55rem;
-	color: white;
+	margin-top: 1rem;
 	text-align: left;
-	z-index: 2;
-
-	@media screen and (max-width: 1300px) {
-		top: 7rem;
-		left: 4rem;
-	}
-
-	@media screen and (max-width: 970px) {
-		top: 6rem;
-	}
-
-	@media screen and (max-width: 760px) {
-		top: 5rem;
-		left: 3rem;
-	}
 
 	& > a {
 		text-decoration: none;
@@ -166,12 +105,12 @@ const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 			}
 
 			@media screen and (max-width: 970px) {
-				font-size: .7rem;
-				height:2rem;
+				font-size: 0.7rem;
+				height: 2rem;
 			}
-		
+
 			@media screen and (max-width: 760px) {
-				font-size: .5rem;
+				font-size: 0.5rem;
 
 				& svg {
 					width: 1rem;
@@ -182,14 +121,7 @@ const ButtonWrapper = styled.div<{ isDarkMode: boolean }>`
 `;
 
 const Img = styled.img`
-	object-fit: cover;
-	position: relative;
-	top: -12rem;
-
-	@media screen and (max-width: 680px) {
-		top: -5rem;
-	}
-	
+	max-height: 750px;
 `;
 
 export default MainCarousel;
