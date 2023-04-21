@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import { ReactComponent as Visa } from "../assets/cards/visa.svg";
 import { ReactComponent as Master } from "../assets/cards/master.svg";
 import { ReactComponent as Amax } from "../assets/cards/amax.svg";
@@ -25,15 +27,18 @@ const Footer = ({ isDarkMode }: { isDarkMode: boolean }) => {
 				))}
 			</CardList>
 			<SNSContainer>
-				<Link to="https://www.facebook.com/0base" target="_blank">
+				<Link to="https://www.facebook.com/0base" target="_blank" id="Facebook">
 					<RiFacebookFill />
 				</Link>
-				<Link to="https://www.instagram.com/zerobase.official/" target="_blank">
+				<Link to="https://www.instagram.com/zerobase.official/" target="_blank" id="Instagram">
 					<FiInstagram />
 				</Link>
-				<Link to="https://github.com/Ryomi-j/ZB_React_Shop" target="_blank">
+				<Link to="https://github.com/Ryomi-j/ZB_React_Shop" target="_blank" id="Github">
 					<AiFillGithub />
 				</Link>
+				<StyledTooltip anchorSelect="#Facebook" content="Facebook" place="bottom" />
+				<StyledTooltip anchorSelect="#Github" content="Github" place="bottom" />
+				<StyledTooltip anchorSelect="#Instagram" content="Instagram" place="bottom" />
 			</SNSContainer>
 			<p>Copyright © 2022 Zero Base</p>
 		</FooterContainer>
@@ -70,4 +75,9 @@ const SNSContainer = styled.div`
 	}
 `;
 
+const StyledTooltip = styled(Tooltip)`
+	font-size: 0.7rem;
+	background: #303f54;
+	border-radius: 10px;
+`;
 export default Footer;
