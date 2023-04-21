@@ -160,6 +160,7 @@ const CartItemContainerWrapper = styled.div`
 			flex-direction: column;
 			align-items: center;
 			margin: 0 auto;
+			padding: 0;
 
 			& figure {
 				padding: 1rem;
@@ -168,6 +169,7 @@ const CartItemContainerWrapper = styled.div`
 
 			& div {
 				padding: 0.5rem;
+				text-align: center;
 
 				& div {
 					padding-left: 13rem;
@@ -185,6 +187,7 @@ const CartItemContainer = styled.div`
 	display: flex;
 	padding: 1rem 4.5rem;
 	max-width: 58rem;
+	width: auto;
 `;
 
 const ImageContainer = styled.figure`
