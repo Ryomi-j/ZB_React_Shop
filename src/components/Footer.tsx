@@ -46,7 +46,7 @@ const FooterContainer = styled.footer<{ isDarkMode: boolean }>`
 	row-gap: 2rem;
 	padding: 3rem;
 	margin-top: auto;
-	width: 100%;
+	max-width: 100%;
 	line-height: 1.25rem;
 	text-align: center;
 	background: ${(props) => (props.isDarkMode ? "#242933" : "#f9fafb")};
