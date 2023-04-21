@@ -8,6 +8,7 @@ import HandleCart from "../components/HandleCart";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface CartPageProps {
 	isDarkMode: boolean;
@@ -15,6 +16,7 @@ interface CartPageProps {
 }
 
 const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
+	const [modal, setModal] = useState(false);
 	const cart = Object.values(CartData());
 	const apiData = GetData("https://fakestoreapi.com/products");
 
@@ -108,9 +110,18 @@ const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 					<TotalPrice>
 						<strong>Total:</strong> $ {cartItem.reduce((a, c, idx) => a + c.price * cartItemNum[idx], 0).toFixed(2)}
 					</TotalPrice>
-					<ButtonItem content="구매하기" />
+					<ButtonItem handleClick={() => setModal(!modal)} content="구매하기" />
 				</Wrapper>
 			</Container>
+			<ConfirmModal modal={modal}>
+				<div className="modalContainer">
+					<h3>구매하시겠습니까?</h3>
+					<div>
+						<ButtonItem handleClick={() => setModal(!modal)} content="네" />
+						<ButtonItem handleClick={() => setModal(!modal)} content="아니요" />
+					</div>
+				</div>
+			</ConfirmModal>
 		</ContainerWrapper>
 	);
 };
@@ -320,4 +331,45 @@ const EmptyCartWrapper = styled.div`
 	}
 `;
 
+const ConfirmModal = styled.div<{ modal: boolean }>`
+	display: ${(props) => (props.modal ? "flex" : "none")};
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: #11131866;
+
+	& .modalContainer {
+		width: 20rem;
+		padding: 3rem 3rem 2rem;
+		background-color: #fff;
+		border-radius: 20px;
+
+		& h3 {
+			font-size: 1.5rem;
+			margin-bottom: 3rem;
+		}
+
+		& div {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			width: initial;
+			gap: 0.5rem;
+
+			& > button {
+				color: #ffffff;
+				background-color: #570df8;
+
+				&:hover {
+					background: #4506cb;
+				}
+			}
+		}
+	}
+`;
 export default CartPage;
