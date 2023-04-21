@@ -49,7 +49,6 @@ const ContainerWrapper = styled.section<{ isDarkMode: boolean }>`
 				color: ${(props) => (props.isDarkMode ? "#a6adba" : "#1f2937")};
 			}
 		}
-		
 	}
 `;
 
