@@ -5,9 +5,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HandleCart from "../components/HandleCart";
 import { CartItems } from "../App";
-import NotFound from "./NotFound";
 import { BreadCrumbleItem } from "../components/common/BreadCrumble";
-import { Loading } from "../components/common/Loading";
+import { Loading } from "./Loading";
 
 export interface DataProps {
 	id: number;
