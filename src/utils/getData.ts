@@ -18,7 +18,7 @@ interface DataProps {
 	rating: RatingProps;
 }
 
-const GetData = () => {
+const getData = () => {
 	const [data, setData] = useState<DataProps[]>([]);
 
 	useEffect(() => {
@@ -36,4 +36,4 @@ const GetData = () => {
 	return data;
 };
 
-export default GetData;
+export default getData;
