@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API } from "../constants";
 
 
 interface RatingProps {
@@ -17,20 +18,20 @@ interface DataProps {
 	rating: RatingProps;
 }
 
-const GetData = (url: string) => {
+const GetData = () => {
 	const [data, setData] = useState<DataProps[]>([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axios.get<DataProps[]>(url);
+				const response = await axios.get<DataProps[]>(API);
 				setData(response.data);
 			} catch (err) {
 				console.error(err);
 			}
 		};
 		fetchData();
-	}, [url]);
+	}, []);
 
 	return data;
 };

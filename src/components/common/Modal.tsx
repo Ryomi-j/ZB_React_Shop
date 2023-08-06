@@ -8,7 +8,7 @@ interface ModalProps {
 }
 
 const Modal = ({ searchValue, setSearchValue }: ModalProps) => {
-	const data = GetData("https://fakestoreapi.com/products");
+	const data = GetData();
 	const value = searchValue.toLowerCase();
 	const filteredData = data.filter((el) => el.title.toLowerCase().includes(value));
 	const maxLength = 40;

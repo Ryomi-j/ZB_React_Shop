@@ -46,7 +46,7 @@ const ProductDetailPage = ({ setCartItem, isDarkMode }: ProductDetailPageProps) 
 	const categories = ["clothing", "jewelery", "electronics"];
 	const categoryTitle = ["패션", "액세서리", "디지털"];
 
-	const item = GetData("https://fakestoreapi.com/products").find((el) => el.id === Number(productId));
+	const item = GetData().find((el) => el.id === Number(productId));
 
 	useEffect(() => {
 		setProduct(item ?? initialDataProps);

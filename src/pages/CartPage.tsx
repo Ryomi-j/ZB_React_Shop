@@ -19,7 +19,7 @@ interface CartPageProps {
 const CartPage = ({ setCartItem, isDarkMode }: CartPageProps) => {
 	const [modal, setModal] = useState(false);
 	const cart = Object.values(CartData());
-	const apiData = GetData("https://fakestoreapi.com/products");
+	const apiData = GetData();
 
 	let cartItem: Array<DataProps> = [];
 	let cartItemNum: Array<number> = [];

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import GetData from "../Api";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "./Loading";
+import { Loading } from "../../pages/Loading";
 
 interface ProductFrameProps {
 	category: string;
@@ -9,7 +9,7 @@ interface ProductFrameProps {
 }
 
 const ProductFrame = (props: ProductFrameProps) => {
-	const data = GetData("https://fakestoreapi.com/products");
+	const data = GetData();
 	let categoryItems = data.filter((el) => el.category.includes(props.category));
 	categoryItems = props.numberOfItems ? categoryItems.slice(0, props.numberOfItems) : categoryItems;
 
